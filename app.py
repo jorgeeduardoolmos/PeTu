@@ -7,47 +7,68 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-st.markdown("""
+BG = "#1a2744"
+
+st.markdown(f"""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@300;400;600;700&display=swap');
-[data-testid="stAppViewContainer"] { background: #0f1b2d; }
-[data-testid="stHeader"] { display: none; }
-[data-testid="stDecoration"] { display: none; }
-.block-container { padding: 0 !important; max-width: 100% !important; }
-section[data-testid="stMain"] > div { padding: 0 !important; }
-/* Forzar centrado en todos los markdown del hero */
-.hero-block { text-align: center !important; width: 100% !important; }
+
+/* Fondo único — pisamos TODO lo que ponga Streamlit */
+html {{ background: {BG} !important; }}
+body {{ background: {BG} !important; }}
+.stApp {{ background: {BG} !important; }}
+[data-testid="stAppViewContainer"] {{ background: {BG} !important; }}
+[data-testid="stMain"] {{ background: {BG} !important; }}
+[data-testid="stMainBlockContainer"] {{ background: {BG} !important; }}
+[data-testid="stVerticalBlock"] {{ background: {BG} !important; }}
+.main {{ background: {BG} !important; }}
+section.main > div {{ background: {BG} !important; }}
+
+[data-testid="stHeader"]     {{ display: none !important; }}
+[data-testid="stDecoration"] {{ display: none !important; }}
+[data-testid="stSidebarNav"] {{ display: none !important; }}
+.block-container {{ padding: 0 !important; max-width: 100% !important; }}
+section[data-testid="stMain"] > div {{ padding: 0 !important; }}
+
+/* Botón CTA */
+div[data-testid="stButton"] > button {{
+    background: #ffd94d !important;
+    color: #0f1b2d !important;
+    font-family: sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    padding: 14px 40px !important;
+    border-radius: 14px !important;
+    border: none !important;
+}}
+div[data-testid="stButton"] > button:hover {{
+    background: #ffe066 !important;
+    color: #0f1b2d !important;
+}}
 </style>
 """, unsafe_allow_html=True)
-
-BG = "background:linear-gradient(160deg,#0f1b2d 0%,#152540 60%,#1a2f52 100%)"
-PAD = "padding:12px 6vw 0"
 
 # ══════════════════════════════════════
 # HERO
 # ══════════════════════════════════════
-
-# Badge
-st.markdown(f"""
-<div style="{BG};padding:60px 6vw 0;text-align:center;">
-  <div style="display:inline-block;background:rgba(255,220,80,0.12);border:1px solid rgba(255,220,80,0.40);color:#ffd94d;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:6px 20px;border-radius:100px;font-family:sans-serif;">
+st.markdown("""
+<div style="padding:60px 6vw 0;text-align:center;">
+  <div style="display:inline-block;background:rgba(255,220,80,0.14);border:1px solid rgba(255,220,80,0.45);color:#ffd94d;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:6px 20px;border-radius:100px;font-family:sans-serif;">
     ⚽ Plataforma integral de fútbol
   </div>
 </div>
 """, unsafe_allow_html=True)
 
-# Título
-st.markdown(f"""
-<div style="{BG};{PAD};text-align:center;">
+st.markdown("""
+<div style="padding:12px 6vw 0;text-align:center;">
   <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(72px,12vw,140px);line-height:0.9;color:#eef2ff;">
     LA <span style="color:#ffd94d;">PETU</span><br>APP
   </div>
 </div>
 """, unsafe_allow_html=True)
 
-# Tagline
-st.markdown(f"""
-<div style="{BG};{PAD};text-align:center;">
+st.markdown("""
+<div style="padding:12px 6vw 0;text-align:center;">
   <p style="font-family:sans-serif;font-size:18px;color:rgba(238,242,255,0.6);font-weight:300;max-width:520px;margin:20px auto 0;line-height:1.65;">
     Todo lo que tu club necesita en un solo lugar.<br>
     Entrenadores, directivos y jugadores, conectados y organizados.
@@ -55,55 +76,51 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# Pills — todas en un solo div centrado
-st.markdown(f"""
-<div style="{BG};padding:28px 6vw 60px;text-align:center;">
+st.markdown("""
+<div style="padding:28px 6vw 40px;text-align:center;">
   <div style="display:inline-flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:800px;">
-    <span style="display:inline-block;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:7px 18px;font-size:13px;color:rgba(238,242,255,0.7);font-family:sans-serif;">📊 <b style="color:#eef2ff;">Estadísticas</b> en tiempo real</span>
-    <span style="display:inline-block;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:7px 18px;font-size:13px;color:rgba(238,242,255,0.7);font-family:sans-serif;">🗓️ <b style="color:#eef2ff;">Fixture</b> y resultados</span>
-    <span style="display:inline-block;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:7px 18px;font-size:13px;color:rgba(238,242,255,0.7);font-family:sans-serif;">📍 <b style="color:#eef2ff;">Canchas</b> geolocalizadas</span>
-    <span style="display:inline-block;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:7px 18px;font-size:13px;color:rgba(238,242,255,0.7);font-family:sans-serif;">💼 <b style="color:#eef2ff;">Contratos</b> y fichajes</span>
-    <span style="display:inline-block;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:7px 18px;font-size:13px;color:rgba(238,242,255,0.7);font-family:sans-serif;">💬 <b style="color:#eef2ff;">Comunicación</b> por roles</span>
-    <span style="display:inline-block;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:7px 18px;font-size:13px;color:rgba(238,242,255,0.7);font-family:sans-serif;">🏋️ <b style="color:#eef2ff;">Entrenamientos</b> planificados</span>
+    <span style="display:inline-block;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:100px;padding:7px 18px;font-size:13px;color:rgba(238,242,255,0.7);font-family:sans-serif;">📊 <b style="color:#eef2ff;">Estadísticas</b> en tiempo real</span>
+    <span style="display:inline-block;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:100px;padding:7px 18px;font-size:13px;color:rgba(238,242,255,0.7);font-family:sans-serif;">🗓️ <b style="color:#eef2ff;">Fixture</b> y resultados</span>
+    <span style="display:inline-block;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:100px;padding:7px 18px;font-size:13px;color:rgba(238,242,255,0.7);font-family:sans-serif;">📍 <b style="color:#eef2ff;">Canchas</b> geolocalizadas</span>
+    <span style="display:inline-block;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:100px;padding:7px 18px;font-size:13px;color:rgba(238,242,255,0.7);font-family:sans-serif;">💼 <b style="color:#eef2ff;">Contratos</b> y fichajes</span>
+    <span style="display:inline-block;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:100px;padding:7px 18px;font-size:13px;color:rgba(238,242,255,0.7);font-family:sans-serif;">💬 <b style="color:#eef2ff;">Comunicación</b> por roles</span>
+    <span style="display:inline-block;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:100px;padding:7px 18px;font-size:13px;color:rgba(238,242,255,0.7);font-family:sans-serif;">🏋️ <b style="color:#eef2ff;">Entrenamientos</b> planificados</span>
   </div>
 </div>
 """, unsafe_allow_html=True)
-
 
 # ── CTA → FLUJOS ─────────────────────────────────────────────────────────────
 st.markdown("""
-<div style="background:linear-gradient(160deg,#0f1b2d 0%,#152540 100%);padding:0 6vw 60px;text-align:center;">
-  <div style="display:inline-block;background:rgba(255,220,80,0.06);border:1px solid rgba(255,220,80,0.20);border-radius:20px;padding:28px 40px;">
-    <div style="font-family:sans-serif;font-size:13px;color:rgba(238,242,255,0.50);margin-bottom:10px;">¿Querés ver cómo funciona por dentro?</div>
-    <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:26px;color:#eef2ff;margin-bottom:16px;">EXPLORÁ LOS FLUJOS DE LA APP →</div>
-  </div>
+<div style="padding:0 6vw 16px;text-align:center;">
+  <div style="font-family:sans-serif;font-size:13px;color:rgba(238,242,255,0.40);margin-bottom:14px;">¿Querés ver cómo funciona por dentro?</div>
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-<div style="background:linear-gradient(160deg,#0f1b2d 0%,#152540 100%);padding:0 6vw 60px;text-align:center;">
-  <a href="https://atlanta-futsal.streamlit.app/Flujos" target="_self" style="display:inline-block;background:#ffd94d;color:#0f1b2d;font-family:sans-serif;font-size:15px;font-weight:700;padding:14px 40px;border-radius:14px;text-decoration:none;">📱 Ver flujos y pantallas de la app</a>
-</div>
-""", unsafe_allow_html=True)
+col_l, col_c, col_r = st.columns([2, 1, 2])
+with col_c:
+    if st.button("📱 Ver flujos de la app", use_container_width=True):
+        st.switch_page("pages/1_Flujos.py")
+
+st.markdown("<div style='height:48px;'></div>", unsafe_allow_html=True)
 
 # ══════════════════════════════════════
 # ROLES
 # ══════════════════════════════════════
 st.markdown("""
-<div style="background:#0f1b2d;padding:70px 6vw 20px;">
+<div style="padding:60px 6vw 20px;">
   <div style="font-family:sans-serif;font-size:11px;letter-spacing:0.20em;text-transform:uppercase;color:#ffd94d;font-weight:700;margin-bottom:10px;">¿Quién usa la plataforma?</div>
   <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(38px,5.5vw,68px);line-height:1;color:#eef2ff;margin:0 0 40px;">TRES ROLES, UNA VISIÓN</div>
 </div>
 """, unsafe_allow_html=True)
 
 def fw(icon, text, accent):
-    return f"""<div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.04);border-radius:12px;padding:12px 14px;margin-bottom:8px;border-left:3px solid {accent};"><span style="font-size:20px;flex-shrink:0;">{icon}</span><span style="font-family:sans-serif;font-size:13px;color:rgba(238,242,255,0.82);line-height:1.35;">{text}</span></div>"""
+    return f"""<div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.05);border-radius:12px;padding:12px 14px;margin-bottom:8px;border-left:3px solid {accent};"><span style="font-size:20px;flex-shrink:0;">{icon}</span><span style="font-family:sans-serif;font-size:13px;color:rgba(238,242,255,0.82);line-height:1.35;">{text}</span></div>"""
 
 col1, col2, col3 = st.columns(3, gap="small")
 
 with col1:
     st.markdown(f"""
-    <div style="background:linear-gradient(145deg,#1a3a5c,#142d4a);border:1px solid rgba(99,179,255,0.25);border-radius:20px;padding:32px 24px;margin:0 8px 24px;">
+    <div style="background:rgba(99,179,255,0.08);border:1px solid rgba(99,179,255,0.22);border-radius:20px;padding:32px 24px;margin:0 8px 24px;">
         <div style="height:3px;background:linear-gradient(90deg,#63b3ff,#3a8fd4);border-radius:3px;margin-bottom:24px;"></div>
         <div style="font-size:36px;margin-bottom:10px;">🧠</div>
         <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:32px;color:#a8d4ff;letter-spacing:0.04em;margin-bottom:6px;">Entrenador</div>
@@ -119,7 +136,7 @@ with col1:
 
 with col2:
     st.markdown(f"""
-    <div style="background:linear-gradient(145deg,#25250a,#1a1a06);border:1px solid rgba(255,220,80,0.30);border-radius:20px;padding:32px 24px;margin:0 8px 24px;">
+    <div style="background:rgba(255,217,77,0.07);border:1px solid rgba(255,217,77,0.25);border-radius:20px;padding:32px 24px;margin:0 8px 24px;">
         <div style="height:3px;background:linear-gradient(90deg,#ffd94d,#f0b800);border-radius:3px;margin-bottom:24px;"></div>
         <div style="font-size:36px;margin-bottom:10px;">🏛️</div>
         <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:32px;color:#ffd94d;letter-spacing:0.04em;margin-bottom:6px;">Directivos</div>
@@ -135,7 +152,7 @@ with col2:
 
 with col3:
     st.markdown(f"""
-    <div style="background:linear-gradient(145deg,#0d2e1e,#0a2418);border:1px solid rgba(80,200,140,0.25);border-radius:20px;padding:32px 24px;margin:0 8px 24px;">
+    <div style="background:rgba(80,200,140,0.07);border:1px solid rgba(80,200,140,0.22);border-radius:20px;padding:32px 24px;margin:0 8px 24px;">
         <div style="height:3px;background:linear-gradient(90deg,#50c88c,#2da869);border-radius:3px;margin-bottom:24px;"></div>
         <div style="font-size:36px;margin-bottom:10px;">⚡</div>
         <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:32px;color:#7de0b0;letter-spacing:0.04em;margin-bottom:6px;">Jugadores</div>
@@ -149,14 +166,13 @@ with col3:
     </div>
     """, unsafe_allow_html=True)
 
-
 # ══════════════════════════════════════
 # FEATURES
 # ══════════════════════════════════════
-st.markdown("""<div style="height:1px;background:rgba(255,255,255,0.06);margin:0 6vw;"></div>""", unsafe_allow_html=True)
+st.markdown('<div style="height:1px;background:rgba(255,255,255,0.08);margin:0 6vw;"></div>', unsafe_allow_html=True)
 
 st.markdown("""
-<div style="background:#0f1b2d;padding:70px 6vw 20px;">
+<div style="padding:60px 6vw 20px;">
   <div style="font-family:sans-serif;font-size:11px;letter-spacing:0.20em;text-transform:uppercase;color:#ffd94d;font-weight:700;margin-bottom:10px;">Funcionalidades</div>
   <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(38px,5.5vw,68px);line-height:1;color:#eef2ff;margin:0 0 40px;">TODO EN UN SOLO LUGAR</div>
 </div>
@@ -175,21 +191,20 @@ cols = st.columns(3, gap="small")
 for i, (icon, title, desc) in enumerate(features):
     with cols[i % 3]:
         st.markdown(f"""
-        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px 24px;margin:0 8px 16px;">
+        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);border-radius:16px;padding:28px 24px;margin:0 8px 16px;">
             <div style="font-size:26px;margin-bottom:12px;">{icon}</div>
             <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:20px;color:#eef2ff;letter-spacing:0.03em;margin-bottom:8px;">{title}</div>
-            <p style="font-family:sans-serif;font-size:13px;color:rgba(238,242,255,0.42);line-height:1.55;margin:0;">{desc}</p>
+            <p style="font-family:sans-serif;font-size:13px;color:rgba(238,242,255,0.45);line-height:1.55;margin:0;">{desc}</p>
         </div>
         """, unsafe_allow_html=True)
-
 
 # ══════════════════════════════════════
 # ROADMAP
 # ══════════════════════════════════════
-st.markdown("""<div style="height:1px;background:rgba(255,255,255,0.06);margin:0 6vw;"></div>""", unsafe_allow_html=True)
+st.markdown('<div style="height:1px;background:rgba(255,255,255,0.08);margin:0 6vw;"></div>', unsafe_allow_html=True)
 
 st.markdown("""
-<div style="background:#0f1b2d;padding:70px 6vw 20px;">
+<div style="padding:60px 6vw 20px;">
   <div style="font-family:sans-serif;font-size:11px;letter-spacing:0.20em;text-transform:uppercase;color:#ffd94d;font-weight:700;margin-bottom:10px;">Plan de desarrollo</div>
   <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(38px,5.5vw,68px);line-height:1;color:#eef2ff;margin:0 0 12px;">ROADMAP</div>
   <p style="font-family:sans-serif;font-size:15px;color:rgba(238,242,255,0.45);font-weight:300;max-width:560px;margin:0 0 48px;line-height:1.65;">Construimos de adentro hacia afuera: primero lo que duele hoy, después lo que genera retención, y finalmente lo que escala el negocio.</p>
@@ -198,14 +213,9 @@ st.markdown("""
 
 phases = [
     {
-        "num": "01",
-        "tag": "Semanas 1 — 4",
-        "title": "Lo que duele hoy",
+        "num": "01", "tag": "Semanas 1 — 4", "title": "Lo que duele hoy",
         "subtitle": "Reemplazar el caos del WhatsApp",
-        "color": "#ffd94d",
-        "bg": "linear-gradient(145deg,#25250a,#1a1a06)",
-        "border": "rgba(255,217,77,0.30)",
-        "status": "🟡 En desarrollo",
+        "color": "#ffd94d", "border": "rgba(255,217,77,0.30)", "status": "🟡 En desarrollo",
         "items": [
             ("📋", "Citaciones para partidos", "Quién va, quién no. Confirmación de presencia sin grupos de WhatsApp."),
             ("🗓️", "Fixture de la temporada", "Fechas, rivales y horarios visibles para todos los roles."),
@@ -213,14 +223,9 @@ phases = [
         ]
     },
     {
-        "num": "02",
-        "tag": "Meses 2 — 3",
-        "title": "Lo que genera retención",
+        "num": "02", "tag": "Meses 2 — 3", "title": "Lo que genera retención",
         "subtitle": "Datos que hacen volver cada semana",
-        "color": "#63b3ff",
-        "bg": "linear-gradient(145deg,#1a3a5c,#142d4a)",
-        "border": "rgba(99,179,255,0.25)",
-        "status": "⚪ Próximamente",
+        "color": "#63b3ff", "border": "rgba(99,179,255,0.25)", "status": "⚪ Próximamente",
         "items": [
             ("⚽", "Resultados de partidos", "Marcador final y goles por jugador cargados al instante."),
             ("📊", "Estadísticas básicas", "Partidos jugados, goles y asistencias por jugador en la temporada."),
@@ -228,14 +233,9 @@ phases = [
         ]
     },
     {
-        "num": "03",
-        "tag": "Meses 4 — 6",
-        "title": "Lo que atrae directivos",
+        "num": "03", "tag": "Meses 4 — 6", "title": "Lo que atrae directivos",
         "subtitle": "Gestión institucional del club",
-        "color": "#7de0b0",
-        "bg": "linear-gradient(145deg,#0d2e1e,#0a2418)",
-        "border": "rgba(80,200,140,0.25)",
-        "status": "⚪ Futuro",
+        "color": "#7de0b0", "border": "rgba(80,200,140,0.25)", "status": "⚪ Futuro",
         "items": [
             ("💼", "Contratos y vencimientos", "Alertas automáticas antes de que venza un contrato."),
             ("🔀", "Gestión de fichajes", "Seguimiento de negociaciones y transferencias del plantel."),
@@ -245,10 +245,9 @@ phases = [
 ]
 
 for phase in phases:
-    # Card header
     st.markdown(f"""
-    <div style="{phase['bg']};border:1px solid {phase['border']};border-radius:20px;padding:36px 32px 24px;margin:0 6vw 20px;">
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:6px;flex-wrap:wrap;">
+    <div style="background:rgba(255,255,255,0.04);border:1px solid {phase['border']};border-radius:20px;padding:36px 32px 24px;margin:0 6vw 20px;">
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
         <span style="font-family:'Bebas Neue',Impact,sans-serif;font-size:52px;color:{phase['color']};line-height:1;opacity:0.22;">{phase['num']}</span>
         <div>
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
@@ -262,13 +261,11 @@ for phase in phases:
     </div>
     """, unsafe_allow_html=True)
 
-    # Feature tiles inside each phase using columns
     c1, c2, c3 = st.columns(3, gap="small")
-    cols_map = [c1, c2, c3]
     for idx, (icon, title, desc) in enumerate(phase["items"]):
-        with cols_map[idx]:
+        with [c1, c2, c3][idx]:
             st.markdown(f"""
-            <div style="background:rgba(255,255,255,0.04);border-radius:14px;padding:20px 20px;margin:0 6vw 8px;border-top:3px solid {phase['color']};">
+            <div style="background:rgba(255,255,255,0.05);border-radius:14px;padding:20px;margin:0 6vw 8px;border-top:3px solid {phase['color']};">
               <div style="font-size:24px;margin-bottom:10px;">{icon}</div>
               <div style="font-family:sans-serif;font-size:14px;font-weight:700;color:#eef2ff;margin-bottom:6px;">{title}</div>
               <div style="font-family:sans-serif;font-size:12px;color:rgba(238,242,255,0.42);line-height:1.5;">{desc}</div>
@@ -283,7 +280,7 @@ st.markdown("<div style='height:40px;'></div>", unsafe_allow_html=True)
 # FOOTER
 # ══════════════════════════════════════
 st.markdown("""
-<div style="margin-top:40px;padding:50px 6vw;text-align:center;border-top:1px solid rgba(255,255,255,0.06);width:100%;">
+<div style="padding:50px 6vw;text-align:center;border-top:1px solid rgba(255,255,255,0.08);">
   <p style="font-family:sans-serif;color:rgba(238,242,255,0.28);font-size:13px;margin:0;text-align:center;">
     Hecho con ❤️ para el fútbol · <b style="color:#ffd94d;">La PeTu App</b> · 2025
   </p>
