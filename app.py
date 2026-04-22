@@ -95,7 +95,7 @@ with col1:
         {fw("📊","Ver estadísticas individuales y colectivas","#63b3ff")}
         {fw("🏋️","Planificar sesiones de entrenamiento","#63b3ff")}
         {fw("🗓️","Consultar fixture y cargar resultados","#63b3ff")}
-        {fw("📍","Elegir y reservar canchas","#63b3ff")}
+        {fw("📋","Citar jugadores para los partidos","#63b3ff")}
         {fw("📢","Enviar comunicados al plantel","#63b3ff")}
         {fw("🩹","Seguimiento de lesiones y estado físico","#63b3ff")}
     </div>
@@ -108,12 +108,12 @@ with col2:
         <div style="font-size:36px;margin-bottom:10px;">🏛️</div>
         <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:32px;color:#ffd94d;letter-spacing:0.04em;margin-bottom:6px;">Directivos</div>
         <p style="font-family:sans-serif;font-size:13px;color:rgba(238,242,255,0.40);margin:0 0 20px;">Visión estratégica, finanzas y mercado de pases</p>
-        {fw("💼","Gestionar contratos, salarios y vencimientos","#ffd94d")}
+        {fw("💼","Gestionar contratos y vencimientos","#ffd94d")}
         {fw("🔀","Seguimiento de fichajes y transferencias","#ffd94d")}
         {fw("💰","Reportes financieros y presupuesto del club","#ffd94d")}
         {fw("📊","Métricas de rendimiento del plantel","#ffd94d")}
-        {fw("🗓️","Consultar fixture y resultados","#ffd94d")}
-        {fw("💬","Comunicación con cuerpo técnico","#ffd94d")}
+        {fw("🗓️","Cargar fixture y partidos","#ffd94d")}
+        {fw("💬","Comunicación con cuerpo técnico y jugadores","#ffd94d")}
     </div>
     """, unsafe_allow_html=True)
 
