@@ -70,6 +70,22 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 
+# ── CTA → FLUJOS ─────────────────────────────────────────────────────────────
+st.markdown("""
+<div style="background:linear-gradient(160deg,#0f1b2d 0%,#152540 100%);padding:0 6vw 60px;text-align:center;">
+  <div style="display:inline-block;background:rgba(255,220,80,0.06);border:1px solid rgba(255,220,80,0.20);border-radius:20px;padding:28px 40px;">
+    <div style="font-family:sans-serif;font-size:13px;color:rgba(238,242,255,0.50);margin-bottom:10px;">¿Querés ver cómo funciona por dentro?</div>
+    <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:26px;color:#eef2ff;margin-bottom:16px;">EXPLORÁ LOS FLUJOS DE LA APP →</div>
+  </div>
+</div>
+""", unsafe_allow_html=True)
+
+col_cta1, col_cta2, col_cta3 = st.columns([1, 1, 1])
+with col_cta2:
+    st.page_link("pages/1_Flujos.py", label="📱 Ver flujos y pantallas", use_container_width=True)
+
+st.markdown("""<div style="background:linear-gradient(160deg,#0f1b2d 0%,#152540 100%);height:40px;"></div>""", unsafe_allow_html=True)
+
 # ══════════════════════════════════════
 # ROLES
 # ══════════════════════════════════════
