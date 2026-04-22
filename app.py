@@ -1,4 +1,5 @@
 import streamlit as st
+from styles import load_css, feature_widget, divider, section_header
 
 st.set_page_config(
     page_title="La PeTu App",
@@ -7,46 +8,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-BG = "#1a2744"
-
-st.markdown(f"""
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@300;400;600;700&display=swap');
-
-/* Fondo único — pisamos TODO lo que ponga Streamlit */
-html {{ background: {BG} !important; }}
-body {{ background: {BG} !important; }}
-.stApp {{ background: {BG} !important; }}
-[data-testid="stAppViewContainer"] {{ background: {BG} !important; }}
-[data-testid="stMain"] {{ background: {BG} !important; }}
-[data-testid="stMainBlockContainer"] {{ background: {BG} !important; }}
-[data-testid="stVerticalBlock"] {{ background: {BG} !important; }}
-.main {{ background: {BG} !important; }}
-section.main > div {{ background: {BG} !important; }}
-
-[data-testid="stHeader"]     {{ display: none !important; }}
-[data-testid="stDecoration"] {{ display: none !important; }}
-[data-testid="stSidebarNav"] {{ display: none !important; }}
-.block-container {{ padding: 0 !important; max-width: 100% !important; }}
-section[data-testid="stMain"] > div {{ padding: 0 !important; }}
-
-/* Botón CTA */
-div[data-testid="stButton"] > button {{
-    background: #ffd94d !important;
-    color: #0f1b2d !important;
-    font-family: sans-serif !important;
-    font-size: 15px !important;
-    font-weight: 700 !important;
-    padding: 14px 40px !important;
-    border-radius: 14px !important;
-    border: none !important;
-}}
-div[data-testid="stButton"] > button:hover {{
-    background: #ffe066 !important;
-    color: #0f1b2d !important;
-}}
-</style>
-""", unsafe_allow_html=True)
+st.markdown(load_css(), unsafe_allow_html=True)
 
 # ══════════════════════════════════════
 # HERO
@@ -96,37 +58,16 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-<div style="text-align:center;padding:0 6vw 8px;">
-  <a href="/1_Flujos" target="_self" style="
-    display:inline-block;
-    background:#ffd94d;
-    color:#0f1b2d;
-    font-family:sans-serif;
-    font-size:15px;
-    font-weight:700;
-    padding:14px 44px;
-    border-radius:14px;
-    text-decoration:none;
-    letter-spacing:0.01em;
-  ">📱 Ver flujos de la app</a>
-</div>
-""", unsafe_allow_html=True)
+st.page_link("pages/1_Flujos.py", label="📱  Ver flujos de la app")
 
 st.markdown("<div style='height:48px;'></div>", unsafe_allow_html=True)
 
 # ══════════════════════════════════════
 # ROLES
 # ══════════════════════════════════════
-st.markdown("""
-<div style="padding:60px 6vw 20px;">
-  <div style="font-family:sans-serif;font-size:11px;letter-spacing:0.20em;text-transform:uppercase;color:#ffd94d;font-weight:700;margin-bottom:10px;">¿Quién usa la plataforma?</div>
-  <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(38px,5.5vw,68px);line-height:1;color:#eef2ff;margin:0 0 40px;">TRES ROLES, UNA VISIÓN</div>
-</div>
-""", unsafe_allow_html=True)
+st.markdown(section_header("¿Quién usa la plataforma?", "TRES ROLES, UNA VISIÓN"), unsafe_allow_html=True)
 
-def fw(icon, text, accent):
-    return f"""<div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.05);border-radius:12px;padding:12px 14px;margin-bottom:8px;border-left:3px solid {accent};"><span style="font-size:20px;flex-shrink:0;">{icon}</span><span style="font-family:sans-serif;font-size:13px;color:rgba(238,242,255,0.82);line-height:1.35;">{text}</span></div>"""
+fw = feature_widget
 
 col1, col2, col3 = st.columns(3, gap="small")
 
@@ -181,14 +122,8 @@ with col3:
 # ══════════════════════════════════════
 # FEATURES
 # ══════════════════════════════════════
-st.markdown('<div style="height:1px;background:rgba(255,255,255,0.08);margin:0 6vw;"></div>', unsafe_allow_html=True)
-
-st.markdown("""
-<div style="padding:60px 6vw 20px;">
-  <div style="font-family:sans-serif;font-size:11px;letter-spacing:0.20em;text-transform:uppercase;color:#ffd94d;font-weight:700;margin-bottom:10px;">Funcionalidades</div>
-  <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(38px,5.5vw,68px);line-height:1;color:#eef2ff;margin:0 0 40px;">TODO EN UN SOLO LUGAR</div>
-</div>
-""", unsafe_allow_html=True)
+st.markdown(divider(), unsafe_allow_html=True)
+st.markdown(section_header("Funcionalidades", "TODO EN UN SOLO LUGAR"), unsafe_allow_html=True)
 
 features = [
     ("📊", "Estadísticas & Métricas", "Goles, asistencias, minutos y más. Datos por partido y temporada, individuales y colectivos."),
@@ -213,15 +148,11 @@ for i, (icon, title, desc) in enumerate(features):
 # ══════════════════════════════════════
 # ROADMAP
 # ══════════════════════════════════════
-st.markdown('<div style="height:1px;background:rgba(255,255,255,0.08);margin:0 6vw;"></div>', unsafe_allow_html=True)
-
-st.markdown("""
-<div style="padding:60px 6vw 20px;">
-  <div style="font-family:sans-serif;font-size:11px;letter-spacing:0.20em;text-transform:uppercase;color:#ffd94d;font-weight:700;margin-bottom:10px;">Plan de desarrollo</div>
-  <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(38px,5.5vw,68px);line-height:1;color:#eef2ff;margin:0 0 12px;">ROADMAP</div>
-  <p style="font-family:sans-serif;font-size:15px;color:rgba(238,242,255,0.45);font-weight:300;max-width:560px;margin:0 0 48px;line-height:1.65;">Construimos de adentro hacia afuera: primero lo que duele hoy, después lo que genera retención, y finalmente lo que escala el negocio.</p>
-</div>
-""", unsafe_allow_html=True)
+st.markdown(divider(), unsafe_allow_html=True)
+st.markdown(section_header(
+    "Plan de desarrollo", "ROADMAP",
+    subtitle="Construimos de adentro hacia afuera: primero lo que duele hoy, después lo que genera retención, y finalmente lo que escala el negocio."
+), unsafe_allow_html=True)
 
 phases = [
     {
