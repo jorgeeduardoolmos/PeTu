@@ -96,10 +96,22 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-col_l, col_c, col_r = st.columns([2, 1, 2])
-with col_c:
-    if st.button("📱 Ver flujos de la app", use_container_width=True):
-        st.switch_page("pages/1_Flujos.py")
+st.markdown("""
+<div style="text-align:center;padding:0 6vw 8px;">
+  <a href="/1_Flujos" target="_self" style="
+    display:inline-block;
+    background:#ffd94d;
+    color:#0f1b2d;
+    font-family:sans-serif;
+    font-size:15px;
+    font-weight:700;
+    padding:14px 44px;
+    border-radius:14px;
+    text-decoration:none;
+    letter-spacing:0.01em;
+  ">📱 Ver flujos de la app</a>
+</div>
+""", unsafe_allow_html=True)
 
 st.markdown("<div style='height:48px;'></div>", unsafe_allow_html=True)
 
