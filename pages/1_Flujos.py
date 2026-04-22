@@ -15,7 +15,7 @@ st.markdown(load_css(), unsafe_allow_html=True)
 # ── HEADER ───────────────────────────────────────────────────────────────────
 st.markdown("""
 <div style="padding:48px 6vw 36px;border-bottom:1px solid rgba(255,220,80,0.15);">
-  <a href="/" style="font-family:sans-serif;font-size:12px;color:rgba(238,242,255,0.4);text-decoration:none;letter-spacing:0.1em;">← Volver al inicio</a>
+  <a href="/" style="font-family:sans-serif;font-size:12px;color:rgba(238,242,255,0.4);text-decoration:none;">← Volver al inicio</a>
   <div style="margin-top:16px;font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(36px,6vw,64px);color:#eef2ff;line-height:1;">
     FLUJOS DE <span style="color:#ffd94d;">LA APP</span>
   </div>
@@ -28,22 +28,7 @@ flujos = ["📱 App Landing", "🔐 Login", "🏠 Home Entrenador"]
 selected = st.radio("", flujos, horizontal=True, label_visibility="collapsed")
 st.markdown('<div style="height:1px;background:rgba(255,255,255,0.06);margin:16px 6vw 40px;"></div>', unsafe_allow_html=True)
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Helpers
-# ─────────────────────────────────────────────────────────────────────────────
-PHONE_TOP = """
-<div style="display:flex;justify-content:center;padding:0 6vw;">
-<div style="width:280px;background:#111827;border-radius:40px;border:6px solid #1e293b;box-shadow:0 40px 80px rgba(0,0,0,0.6);overflow:hidden;">
-<div style="background:#111827;height:28px;display:flex;justify-content:center;align-items:center;">
-<div style="width:80px;height:10px;background:#0a0f1a;border-radius:10px;"></div>
-</div>"""
-
-PHONE_BOTTOM = """
-<div style="background:#111827;height:24px;display:flex;justify-content:center;align-items:center;">
-<div style="width:80px;height:4px;background:#2d3748;border-radius:4px;"></div>
-</div>
-</div></div>"""
-
+# ── HELPERS ──────────────────────────────────────────────────────────────────
 def note_card(icon, title, desc):
     return f"""
 <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:18px 20px;margin-bottom:12px;">
@@ -56,120 +41,170 @@ def note_card(icon, title, desc):
   </div>
 </div>"""
 
-def pending_box(text):
-    lines = "".join(f"· {l}<br>" for l in text)
+def pending_box(items):
+    lines = "".join(f"· {l}<br>" for l in items)
     return f"""
 <div style="background:rgba(255,220,80,0.08);border:1px solid rgba(255,220,80,0.25);border-radius:14px;padding:18px 20px;margin-top:4px;">
   <div style="font-family:sans-serif;font-size:12px;font-weight:700;color:#ffd94d;margin-bottom:8px;">⚡ Decisiones pendientes</div>
   <div style="font-family:sans-serif;font-size:12px;color:rgba(238,242,255,0.55);line-height:1.8;">{lines}</div>
 </div>"""
 
+def screen_header(num, title, desc):
+    st.markdown(f"""
+<div style="padding:0 6vw;margin-bottom:24px;">
+  <div style="font-family:sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#ffd94d;font-weight:700;margin-bottom:6px;">Pantalla {num}</div>
+  <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:36px;color:#eef2ff;">{title}</div>
+  <p style="font-family:sans-serif;font-size:13px;color:rgba(238,242,255,0.45);margin:6px 0 0;">{desc}</p>
+</div>
+""", unsafe_allow_html=True)
+
+# ═════════════════════════════════════════════════════════════════
+# SVGs
+# ═════════════════════════════════════════════════════════════════
+
+SVG_SPLASH = """
+<div style="display:flex;justify-content:center;padding:0 0 32px;">
+<svg viewBox="0 0 220 480" width="220" xmlns="http://www.w3.org/2000/svg" style="font-family:sans-serif;">
+  <rect x="0" y="0" width="220" height="480" rx="32" fill="#111827" stroke="#2d3748" stroke-width="5"/>
+  <rect x="8" y="18" width="204" height="444" rx="16" fill="#0f1b2d"/>
+  <rect x="75" y="20" width="70" height="9" rx="4" fill="#0a0f1a"/>
+  <ellipse cx="110" cy="175" rx="65" ry="55" fill="rgba(255,217,77,0.07)"/>
+  <text x="110" y="175" text-anchor="middle" font-size="40" fill="#ffd94d">⚽</text>
+  <text x="110" y="222" text-anchor="middle" font-size="28" font-weight="700" fill="#eef2ff" font-family="Impact,sans-serif">LA PETU</text>
+  <text x="110" y="252" text-anchor="middle" font-size="28" font-weight="700" fill="#ffd94d" font-family="Impact,sans-serif">APP</text>
+  <text x="110" y="275" text-anchor="middle" font-size="10" fill="#556688">Tu club, tu equipo, todo en un lugar.</text>
+  <rect x="52" y="298" width="116" height="34" rx="10" fill="#ffd94d"/>
+  <text x="110" y="319" text-anchor="middle" font-size="12" font-weight="700" fill="#0f1b2d">Iniciar sesión</text>
+  <rect x="52" y="340" width="116" height="34" rx="10" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+  <text x="110" y="361" text-anchor="middle" font-size="12" fill="#8899bb">Soy nuevo aquí</text>
+  <text x="110" y="400" text-anchor="middle" font-size="8" fill="rgba(238,242,255,0.18)">Versión 1.0 · Beta</text>
+  <rect x="75" y="456" width="70" height="4" rx="2" fill="#2d3748"/>
+</svg>
+</div>
+"""
+
+SVG_LOGIN = """
+<div style="display:flex;justify-content:center;padding:0 0 32px;">
+<svg viewBox="0 0 220 480" width="220" xmlns="http://www.w3.org/2000/svg" style="font-family:sans-serif;">
+  <rect x="0" y="0" width="220" height="480" rx="32" fill="#111827" stroke="#2d3748" stroke-width="5"/>
+  <rect x="8" y="18" width="204" height="444" rx="16" fill="#0f1b2d"/>
+  <rect x="75" y="20" width="70" height="9" rx="4" fill="#0a0f1a"/>
+  <text x="20" y="52" font-size="9" fill="rgba(238,242,255,0.28)">← Volver</text>
+  <text x="20" y="82" font-size="20" font-weight="700" fill="#eef2ff" font-family="Impact,sans-serif">BIENVENIDO</text>
+  <text x="20" y="96" font-size="9" fill="#556688">Ingresá con tu cuenta del club</text>
+  <text x="20" y="118" font-size="8" font-weight="700" fill="#556688" letter-spacing="1">EMAIL</text>
+  <rect x="20" y="122" width="180" height="28" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.10)" stroke-width="0.5"/>
+  <text x="32" y="140" font-size="9" fill="rgba(238,242,255,0.25)">tucorreo@club.com</text>
+  <text x="20" y="164" font-size="8" font-weight="700" fill="#556688" letter-spacing="1">CONTRASEÑA</text>
+  <rect x="20" y="168" width="180" height="28" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.10)" stroke-width="0.5"/>
+  <text x="32" y="186" font-size="9" fill="rgba(238,242,255,0.25)">••••••••</text>
+  <text x="200" y="210" text-anchor="end" font-size="8" fill="#ffd94d">¿Olvidaste tu contraseña?</text>
+  <rect x="20" y="218" width="180" height="32" rx="10" fill="#ffd94d"/>
+  <text x="110" y="238" text-anchor="middle" font-size="12" font-weight="700" fill="#0f1b2d">Entrar</text>
+  <line x1="20" y1="266" x2="95" y2="266" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+  <text x="110" y="270" text-anchor="middle" font-size="8" fill="rgba(238,242,255,0.2)">o</text>
+  <line x1="125" y1="266" x2="200" y2="266" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+  <rect x="20" y="276" width="180" height="28" rx="9" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.10)" stroke-width="0.5"/>
+  <text x="110" y="294" text-anchor="middle" font-size="9" fill="rgba(238,242,255,0.50)">Continuar con Google</text>
+  <rect x="20" y="316" width="180" height="36" rx="8" fill="rgba(99,179,255,0.08)" stroke="rgba(99,179,255,0.20)" stroke-width="0.5"/>
+  <text x="30" y="331" font-size="8" font-weight="700" fill="#63b3ff">Detectando rol automáticamente...</text>
+  <text x="30" y="344" font-size="8" fill="rgba(238,242,255,0.30)">Entrenador · Directivo · Jugador</text>
+  <rect x="75" y="456" width="70" height="4" rx="2" fill="#2d3748"/>
+</svg>
+</div>
+"""
+
+SVG_HOME = """
+<div style="display:flex;justify-content:center;padding:0 0 32px;">
+<svg viewBox="0 0 220 480" width="220" xmlns="http://www.w3.org/2000/svg" style="font-family:sans-serif;">
+  <rect x="0" y="0" width="220" height="480" rx="32" fill="#111827" stroke="#2d3748" stroke-width="5"/>
+  <rect x="8" y="18" width="204" height="444" rx="16" fill="#0f1b2d"/>
+  <rect x="75" y="20" width="70" height="9" rx="4" fill="#0a0f1a"/>
+  <!-- top bar -->
+  <text x="20" y="50" font-size="8" fill="rgba(238,242,255,0.28)">Buenos días,</text>
+  <text x="20" y="64" font-size="14" font-weight="700" fill="#eef2ff" font-family="Impact,sans-serif">PROFE GARCÍA 🧠</text>
+  <circle cx="196" cy="55" r="13" fill="rgba(255,217,77,0.12)" stroke="rgba(255,217,77,0.30)" stroke-width="0.5"/>
+  <text x="196" y="60" text-anchor="middle" font-size="12">🔔</text>
+  <!-- partido card -->
+  <rect x="20" y="78" width="180" height="52" rx="10" fill="rgba(99,179,255,0.10)" stroke="rgba(99,179,255,0.22)" stroke-width="0.5"/>
+  <text x="30" y="92" font-size="7" font-weight="700" fill="#63b3ff" letter-spacing="1">PRÓXIMO PARTIDO</text>
+  <text x="30" y="106" font-size="11" font-weight="700" fill="#eef2ff" font-family="Impact,sans-serif">ATLÉTICO VS RIVALES FC</text>
+  <text x="30" y="120" font-size="8" fill="rgba(238,242,255,0.40)">Sáb 28 Jun · 16:00 hs</text>
+  <rect x="168" y="90" width="26" height="18" rx="5" fill="#ffd94d"/>
+  <text x="181" y="102" text-anchor="middle" font-size="7" font-weight="700" fill="#0f1b2d">Citar</text>
+  <!-- stats 2x2 -->
+  <rect x="20" y="140" width="84" height="44" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="62" y="158" text-anchor="middle" font-size="18" font-weight="700" fill="#ffd94d">18</text>
+  <text x="62" y="174" text-anchor="middle" font-size="7" fill="rgba(238,242,255,0.38)">Jugadores activos</text>
+  <rect x="112" y="140" width="88" height="44" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="156" y="158" text-anchor="middle" font-size="18" font-weight="700" fill="#50c88c">3 — 1</text>
+  <text x="156" y="174" text-anchor="middle" font-size="7" fill="rgba(238,242,255,0.38)">Último resultado</text>
+  <rect x="20" y="192" width="84" height="44" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="62" y="210" text-anchor="middle" font-size="18" font-weight="700" fill="#63b3ff">12</text>
+  <text x="62" y="226" text-anchor="middle" font-size="7" fill="rgba(238,242,255,0.38)">Fechas jugadas</text>
+  <rect x="112" y="192" width="88" height="44" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="156" y="210" text-anchor="middle" font-size="18" font-weight="700" fill="#f87171">2</text>
+  <text x="156" y="226" text-anchor="middle" font-size="7" fill="rgba(238,242,255,0.38)">Con molestias</text>
+  <!-- acciones label -->
+  <text x="20" y="252" font-size="7" font-weight="700" fill="rgba(238,242,255,0.28)" letter-spacing="1">ACCIONES RÁPIDAS</text>
+  <!-- 3 tiles -->
+  <rect x="20" y="258" width="52" height="52" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="46" y="280" text-anchor="middle" font-size="16">📋</text>
+  <text x="46" y="298" text-anchor="middle" font-size="7" fill="rgba(238,242,255,0.45)">Citar</text>
+  <rect x="80" y="258" width="60" height="52" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="110" y="280" text-anchor="middle" font-size="16">🗓️</text>
+  <text x="110" y="298" text-anchor="middle" font-size="7" fill="rgba(238,242,255,0.45)">Fixture</text>
+  <rect x="148" y="258" width="52" height="52" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="174" y="280" text-anchor="middle" font-size="16">📍</text>
+  <text x="174" y="298" text-anchor="middle" font-size="7" fill="rgba(238,242,255,0.45)">Cancha</text>
+  <!-- bottom nav -->
+  <rect x="8" y="402" width="204" height="46" rx="0" fill="#0d1623"/>
+  <line x1="8" y1="402" x2="212" y2="402" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+  <text x="55" y="430" text-anchor="middle" font-size="18">🏠</text>
+  <text x="95" y="430" text-anchor="middle" font-size="18" opacity="0.28">👥</text>
+  <text x="135" y="430" text-anchor="middle" font-size="18" opacity="0.28">📊</text>
+  <text x="175" y="430" text-anchor="middle" font-size="18" opacity="0.28">⚙️</text>
+  <rect x="75" y="456" width="70" height="4" rx="2" fill="#2d3748"/>
+</svg>
+</div>
+"""
+
 # ═════════════════════════════════════════════════════════════════
 # FLUJO 1 — APP LANDING
 # ═════════════════════════════════════════════════════════════════
 if selected == "📱 App Landing":
-
-    st.markdown("""
-    <div style="padding:0 6vw;margin-bottom:24px;">
-      <div style="font-family:sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#ffd94d;font-weight:700;margin-bottom:6px;">Pantalla 01</div>
-      <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:36px;color:#eef2ff;">SPLASH SCREEN — Apertura de la app</div>
-      <p style="font-family:sans-serif;font-size:13px;color:rgba(238,242,255,0.45);margin:6px 0 0;">Lo primero que ve el usuario al abrir la app por primera vez o cuando no hay sesión activa.</p>
-    </div>
-    """, unsafe_allow_html=True)
+    screen_header("01", "SPLASH SCREEN — Apertura de la app",
+        "Lo primero que ve el usuario al abrir la app por primera vez o cuando no hay sesión activa.")
 
     col_phone, col_notes = st.columns([1, 1], gap="large")
-
     with col_phone:
-        # Frame superior
-        st.markdown(PHONE_TOP, unsafe_allow_html=True)
-        # Contenido pantalla — partido en bloques
-        st.markdown("""
-        <div style="background:linear-gradient(160deg,#0f1b2d 0%,#152540 100%);padding:40px 24px 0;text-align:center;position:relative;">
-          <div style="position:absolute;top:40px;left:50%;transform:translateX(-50%);width:180px;height:180px;background:radial-gradient(circle,rgba(255,220,80,0.10) 0%,transparent 70%);pointer-events:none;"></div>
-          <div style="font-size:48px;margin-bottom:6px;">⚽</div>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("""
-        <div style="background:linear-gradient(160deg,#0f1b2d 0%,#152540 100%);padding:0 24px;text-align:center;">
-          <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:38px;color:#eef2ff;line-height:0.95;">LA <span style="color:#ffd94d;">PETU</span><br>APP</div>
-          <p style="font-family:sans-serif;font-size:11px;color:rgba(238,242,255,0.40);margin:12px 0 32px;line-height:1.5;">Tu club, tu equipo,<br>todo en un lugar.</p>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("""
-        <div style="background:linear-gradient(160deg,#0f1b2d 0%,#152540 100%);padding:0 24px 32px;text-align:center;">
-          <div style="background:#ffd94d;color:#0f1b2d;font-family:sans-serif;font-size:13px;font-weight:700;padding:13px;border-radius:13px;margin-bottom:10px;">Iniciar sesión</div>
-          <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(238,242,255,0.65);font-family:sans-serif;font-size:13px;font-weight:600;padding:13px;border-radius:13px;">Soy nuevo aquí</div>
-          <p style="font-family:sans-serif;font-size:9px;color:rgba(238,242,255,0.18);margin:20px 0 0;">Versión 1.0 · Beta</p>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown(PHONE_BOTTOM, unsafe_allow_html=True)
-
+        st.markdown(SVG_SPLASH, unsafe_allow_html=True)
     with col_notes:
         st.markdown('<div style="font-family:sans-serif;font-size:13px;font-weight:700;color:#ffd94d;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">Notas de diseño</div>', unsafe_allow_html=True)
         st.markdown(note_card("🎨", "Identidad visual", "Fondo azul marino con acento amarillo. Logo centrado. Transmite seriedad deportiva sin ser fría."), unsafe_allow_html=True)
-        st.markdown(note_card("🔘", "Dos acciones claras", "'Iniciar sesión' es el CTA principal. 'Soy nuevo aquí' es secundario. Sin ambigüedad."), unsafe_allow_html=True)
+        st.markdown(note_card("🔘", "Dos acciones claras", "'Iniciar sesión' es el CTA principal en amarillo. 'Soy nuevo aquí' es secundario. Sin ambigüedad."), unsafe_allow_html=True)
         st.markdown(note_card("✨", "Sin ruido", "Splash minimalista. El usuario sabe exactamente qué hacer en 2 segundos."), unsafe_allow_html=True)
-        st.markdown(note_card("📲", "Próximo paso", "Al tocar 'Iniciar sesión' → pantalla de Login. Al tocar 'Soy nuevo' → flujo de registro."), unsafe_allow_html=True)
+        st.markdown(note_card("📲", "Próximo paso", "Iniciar sesión → pantalla de Login. Soy nuevo → flujo de registro (Fase 2)."), unsafe_allow_html=True)
         st.markdown(pending_box(["¿El registro lo hace solo el admin o puede auto-registrarse cualquier jugador?"]), unsafe_allow_html=True)
 
 # ═════════════════════════════════════════════════════════════════
 # FLUJO 2 — LOGIN
 # ═════════════════════════════════════════════════════════════════
 elif selected == "🔐 Login":
-
-    st.markdown("""
-    <div style="padding:0 6vw;margin-bottom:24px;">
-      <div style="font-family:sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#ffd94d;font-weight:700;margin-bottom:6px;">Pantalla 02</div>
-      <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:36px;color:#eef2ff;">LOGIN — Acceso a la cuenta</div>
-      <p style="font-family:sans-serif;font-size:13px;color:rgba(238,242,255,0.45);margin:6px 0 0;">El sistema detecta el rol del usuario y redirige al home correspondiente.</p>
-    </div>
-    """, unsafe_allow_html=True)
+    screen_header("02", "LOGIN — Acceso a la cuenta",
+        "El sistema detecta el rol del usuario y redirige al home correspondiente.")
 
     col_phone, col_notes = st.columns([1, 1], gap="large")
-
     with col_phone:
-        st.markdown(PHONE_TOP, unsafe_allow_html=True)
-        st.markdown("""
-        <div style="background:#0f1b2d;padding:20px 20px 0;">
-          <div style="font-family:sans-serif;font-size:10px;color:rgba(238,242,255,0.30);margin-bottom:24px;">← Volver</div>
-          <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:26px;color:#eef2ff;margin-bottom:4px;">Bienvenido</div>
-          <p style="font-family:sans-serif;font-size:11px;color:rgba(238,242,255,0.35);margin:0 0 24px;">Ingresá con tu cuenta del club</p>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("""
-        <div style="background:#0f1b2d;padding:0 20px;">
-          <div style="font-family:sans-serif;font-size:9px;font-weight:700;color:rgba(238,242,255,0.45);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:5px;">Email</div>
-          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:11px 13px;font-family:sans-serif;font-size:11px;color:rgba(238,242,255,0.30);margin-bottom:12px;">tucorreo@club.com</div>
-          <div style="font-family:sans-serif;font-size:9px;font-weight:700;color:rgba(238,242,255,0.45);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:5px;">Contraseña</div>
-          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:11px 13px;font-family:sans-serif;font-size:11px;color:rgba(238,242,255,0.30);margin-bottom:6px;">••••••••</div>
-          <div style="text-align:right;margin-bottom:22px;"><span style="font-family:sans-serif;font-size:10px;color:#ffd94d;">¿Olvidaste tu contraseña?</span></div>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("""
-        <div style="background:#0f1b2d;padding:0 20px 28px;">
-          <div style="background:#ffd94d;color:#0f1b2d;font-family:sans-serif;font-size:13px;font-weight:700;padding:13px;border-radius:13px;text-align:center;margin-bottom:16px;">Entrar</div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
-            <div style="flex:1;height:1px;background:rgba(255,255,255,0.08);"></div>
-            <span style="font-family:sans-serif;font-size:10px;color:rgba(238,242,255,0.22);">o</span>
-            <div style="flex:1;height:1px;background:rgba(255,255,255,0.08);"></div>
-          </div>
-          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);border-radius:13px;padding:11px;text-align:center;font-family:sans-serif;font-size:11px;color:rgba(238,242,255,0.55);margin-bottom:14px;">🔵 Continuar con Google</div>
-          <div style="background:rgba(99,179,255,0.08);border:1px solid rgba(99,179,255,0.20);border-radius:10px;padding:10px 12px;">
-            <div style="font-family:sans-serif;font-size:9px;color:#63b3ff;font-weight:700;">🔍 Detectando rol automáticamente...</div>
-            <div style="font-family:sans-serif;font-size:9px;color:rgba(238,242,255,0.30);margin-top:2px;">Entrenador · Directivo · Jugador</div>
-          </div>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown(PHONE_BOTTOM, unsafe_allow_html=True)
-
+        st.markdown(SVG_LOGIN, unsafe_allow_html=True)
     with col_notes:
         st.markdown('<div style="font-family:sans-serif;font-size:13px;font-weight:700;color:#ffd94d;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">Notas de diseño</div>', unsafe_allow_html=True)
-        st.markdown(note_card("🎭", "Rol automático", "El sistema detecta el rol según el email registrado. No hay selector de rol visible — reduce fricción y errores."), unsafe_allow_html=True)
-        st.markdown(note_card("📧", "Email + contraseña", "Acceso básico y familiar para todos los perfiles, incluidos jugadores mayores."), unsafe_allow_html=True)
+        st.markdown(note_card("🎭", "Rol automático", "El sistema detecta el rol según el email registrado. No hay selector visible — reduce fricción y errores."), unsafe_allow_html=True)
+        st.markdown(note_card("📧", "Email + contraseña", "Acceso familiar para todos los perfiles, incluidos jugadores mayores no nativos digitales."), unsafe_allow_html=True)
         st.markdown(note_card("🔵", "Google OAuth", "Opción secundaria para quienes prefieren no recordar contraseñas."), unsafe_allow_html=True)
-        st.markdown(note_card("🔀", "Redirección por rol", "Login exitoso → Entrenador va a su dashboard. Jugador a su perfil. Directivo al panel."), unsafe_allow_html=True)
+        st.markdown(note_card("🔀", "Redirección por rol", "Entrenador → dashboard. Jugador → perfil. Directivo → panel de gestión."), unsafe_allow_html=True)
         st.markdown(pending_box([
-            "¿Usamos autenticación propia o Firebase/Supabase?",
+            "¿Autenticación propia o Firebase/Supabase?",
             "¿El primer login tiene un paso de 'elegir club'?",
             "¿Hay PIN rápido para acceso sin contraseña?"
         ]), unsafe_allow_html=True)
@@ -178,114 +213,26 @@ elif selected == "🔐 Login":
 # FLUJO 3 — HOME ENTRENADOR
 # ═════════════════════════════════════════════════════════════════
 elif selected == "🏠 Home Entrenador":
-
-    st.markdown("""
-    <div style="padding:0 6vw;margin-bottom:24px;">
-      <div style="font-family:sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#ffd94d;font-weight:700;margin-bottom:6px;">Pantalla 03</div>
-      <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:36px;color:#eef2ff;">HOME — Dashboard del Entrenador</div>
-      <p style="font-family:sans-serif;font-size:13px;color:rgba(238,242,255,0.45);margin:6px 0 0;">Vista principal tras el login. Resumen del equipo y accesos directos a las acciones más frecuentes.</p>
-    </div>
-    """, unsafe_allow_html=True)
+    screen_header("03", "HOME — Dashboard del Entrenador",
+        "Vista principal tras el login. Resumen del equipo y accesos directos a las acciones más frecuentes.")
 
     col_phone, col_notes = st.columns([1, 1], gap="large")
-
     with col_phone:
-        st.markdown(PHONE_TOP, unsafe_allow_html=True)
-        # Top bar
-        st.markdown("""
-        <div style="background:#0f1b2d;padding:18px 16px 0;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
-            <div>
-              <div style="font-family:sans-serif;font-size:9px;color:rgba(238,242,255,0.30);">Buenos días,</div>
-              <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:17px;color:#eef2ff;">PROFE GARCÍA 🧠</div>
-            </div>
-            <div style="width:32px;height:32px;background:rgba(255,220,80,0.15);border:1px solid rgba(255,220,80,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;">🔔</div>
-          </div>
-        </div>
-        """, unsafe_allow_html=True)
-        # Próximo partido
-        st.markdown("""
-        <div style="background:#0f1b2d;padding:0 16px 12px;">
-          <div style="background:linear-gradient(135deg,rgba(99,179,255,0.12),rgba(58,143,212,0.08));border:1px solid rgba(99,179,255,0.22);border-radius:13px;padding:13px;">
-            <div style="font-family:sans-serif;font-size:8px;font-weight:700;color:#63b3ff;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:5px;">Próximo partido</div>
-            <div style="display:flex;justify-content:space-between;align-items:center;">
-              <div>
-                <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:13px;color:#eef2ff;">Atlético vs Rivales FC</div>
-                <div style="font-family:sans-serif;font-size:9px;color:rgba(238,242,255,0.40);margin-top:2px;">Sáb 28 Jun · 16:00 hs</div>
-              </div>
-              <div style="background:#ffd94d;color:#0f1b2d;font-family:sans-serif;font-size:8px;font-weight:700;padding:5px 9px;border-radius:7px;">Citar</div>
-            </div>
-          </div>
-        </div>
-        """, unsafe_allow_html=True)
-        # Stats
-        st.markdown("""
-        <div style="background:#0f1b2d;padding:0 16px 12px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;">
-            <div style="background:rgba(255,255,255,0.05);border-radius:11px;padding:11px;">
-              <div style="font-family:sans-serif;font-size:17px;font-weight:700;color:#ffd94d;">18</div>
-              <div style="font-family:sans-serif;font-size:8px;color:rgba(238,242,255,0.38);">Jugadores activos</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.05);border-radius:11px;padding:11px;">
-              <div style="font-family:sans-serif;font-size:17px;font-weight:700;color:#50c88c;">3 — 1</div>
-              <div style="font-family:sans-serif;font-size:8px;color:rgba(238,242,255,0.38);">Último resultado</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.05);border-radius:11px;padding:11px;">
-              <div style="font-family:sans-serif;font-size:17px;font-weight:700;color:#63b3ff;">12</div>
-              <div style="font-family:sans-serif;font-size:8px;color:rgba(238,242,255,0.38);">Fechas jugadas</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.05);border-radius:11px;padding:11px;">
-              <div style="font-family:sans-serif;font-size:17px;font-weight:700;color:#f87171;">2</div>
-              <div style="font-family:sans-serif;font-size:8px;color:rgba(238,242,255,0.38);">Con molestias</div>
-            </div>
-          </div>
-        </div>
-        """, unsafe_allow_html=True)
-        # Acciones rápidas
-        st.markdown("""
-        <div style="background:#0f1b2d;padding:0 16px 8px;">
-          <div style="font-family:sans-serif;font-size:8px;font-weight:700;color:rgba(238,242,255,0.30);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:7px;">Acciones rápidas</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">
-            <div style="background:rgba(255,255,255,0.05);border-radius:9px;padding:9px 5px;text-align:center;">
-              <div style="font-size:15px;margin-bottom:4px;">📋</div>
-              <div style="font-family:sans-serif;font-size:7px;color:rgba(238,242,255,0.50);">Citar jugadores</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.05);border-radius:9px;padding:9px 5px;text-align:center;">
-              <div style="font-size:15px;margin-bottom:4px;">🗓️</div>
-              <div style="font-family:sans-serif;font-size:7px;color:rgba(238,242,255,0.50);">Ver fixture</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.05);border-radius:9px;padding:9px 5px;text-align:center;">
-              <div style="font-size:15px;margin-bottom:4px;">📍</div>
-              <div style="font-family:sans-serif;font-size:7px;color:rgba(238,242,255,0.50);">Cancha</div>
-            </div>
-          </div>
-        </div>
-        """, unsafe_allow_html=True)
-        # Bottom nav
-        st.markdown("""
-        <div style="background:#0d1623;border-top:1px solid rgba(255,255,255,0.06);padding:10px 16px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;">
-          <div style="text-align:center;font-size:17px;">🏠</div>
-          <div style="text-align:center;font-size:17px;opacity:0.30;">👥</div>
-          <div style="text-align:center;font-size:17px;opacity:0.30;">📊</div>
-          <div style="text-align:center;font-size:17px;opacity:0.30;">⚙️</div>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown(PHONE_BOTTOM, unsafe_allow_html=True)
-
+        st.markdown(SVG_HOME, unsafe_allow_html=True)
     with col_notes:
         st.markdown('<div style="font-family:sans-serif;font-size:13px;font-weight:700;color:#ffd94d;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">Notas de diseño</div>', unsafe_allow_html=True)
         st.markdown(note_card("👋", "Saludo personalizado", "El nombre del entrenador aparece arriba. Confirma que el login fue al rol correcto."), unsafe_allow_html=True)
-        st.markdown(note_card("🎯", "Card de próximo partido", "Lo más urgente al frente. Botón directo a 'Citar' sin navegar."), unsafe_allow_html=True)
-        st.markdown(note_card("📊", "4 métricas clave", "Jugadores activos, resultado, fechas jugadas y lesionados. Todo de un vistazo."), unsafe_allow_html=True)
+        st.markdown(note_card("🎯", "Card de próximo partido", "Lo más urgente al frente. Botón directo a 'Citar' sin tener que navegar."), unsafe_allow_html=True)
+        st.markdown(note_card("📊", "4 métricas clave", "Jugadores activos, resultado, fechas y lesionados. Todo de un vistazo."), unsafe_allow_html=True)
         st.markdown(note_card("⚡", "Acciones rápidas", "Las 3 acciones de Fase 1 siempre visibles. Tap directo sin navegar."), unsafe_allow_html=True)
-        st.markdown(note_card("🔻", "Bottom nav", "Navegación fija abajo: Home, Plantel, Estadísticas, Config."), unsafe_allow_html=True)
+        st.markdown(note_card("🔻", "Bottom nav", "Navegación fija: Home, Plantel, Estadísticas, Configuración."), unsafe_allow_html=True)
         st.markdown(pending_box([
             "Pantalla de Citación de jugadores",
             "Pantalla de Fixture / calendario",
             "Home del Jugador (vista diferente)"
         ]), unsafe_allow_html=True)
 
-# ── FOOTER ────────────────────────────────────────────────────────────────────
+# ── FOOTER ───────────────────────────────────────────────────────────────────
 st.markdown("<div style='height:48px'></div>", unsafe_allow_html=True)
 st.markdown("""
 <div style="padding:32px 6vw;text-align:center;border-top:1px solid rgba(255,255,255,0.06);">
