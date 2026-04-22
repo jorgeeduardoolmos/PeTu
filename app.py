@@ -5,7 +5,7 @@ st.set_page_config(
     page_title="La PeTu App",
     page_icon="⚽",
     layout="wide",
-    initial_sidebar_state="collapsed",
+    initial_sidebar_state="expanded",
 )
 
 st.markdown(load_css(), unsafe_allow_html=True)
@@ -53,12 +53,14 @@ st.markdown("""
 
 # ── CTA → FLUJOS ─────────────────────────────────────────────────────────────
 st.markdown("""
-<div style="padding:0 6vw 16px;text-align:center;">
-  <div style="font-family:sans-serif;font-size:13px;color:rgba(238,242,255,0.40);margin-bottom:14px;">¿Querés ver cómo funciona por dentro?</div>
+<div style="padding:0 6vw 8px;text-align:center;">
+  <div style="font-family:sans-serif;font-size:13px;color:rgba(238,242,255,0.40);">¿Querés ver cómo funciona por dentro?</div>
 </div>
 """, unsafe_allow_html=True)
 
-st.page_link("pages/1_Flujos.py", label="📱  Ver flujos de la app")
+_, center, _ = st.columns([1.5, 1, 1.5])
+with center:
+    st.page_link("pages/1_Flujos.py", label="📱  Ver flujos de la app", use_container_width=True)
 
 st.markdown("<div style='height:48px;'></div>", unsafe_allow_html=True)
 
