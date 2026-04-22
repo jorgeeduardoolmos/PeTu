@@ -81,26 +81,10 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("""
-<style>
-div[data-testid="stPageLink"] {
-    display: flex;
-    justify-content: center;
-    background: linear-gradient(160deg,#0f1b2d 0%,#152540 100%);
-    padding: 0 6vw 60px;
-}
-div[data-testid="stPageLink"] a {
-    background: #ffd94d !important;
-    color: #0f1b2d !important;
-    font-weight: 700 !important;
-    border-radius: 14px !important;
-    padding: 14px 40px !important;
-    font-size: 15px !important;
-    text-decoration: none !important;
-}
-</style>
+<div style="background:linear-gradient(160deg,#0f1b2d 0%,#152540 100%);padding:0 6vw 60px;text-align:center;">
+  <a href="https://atlanta-futsal.streamlit.app/Flujos" target="_self" style="display:inline-block;background:#ffd94d;color:#0f1b2d;font-family:sans-serif;font-size:15px;font-weight:700;padding:14px 40px;border-radius:14px;text-decoration:none;">📱 Ver flujos y pantallas de la app</a>
+</div>
 """, unsafe_allow_html=True)
-
-st.page_link("pages/1_Flujos.py", label="📱  Ver flujos y pantallas de la app")
 
 # ══════════════════════════════════════
 # ROLES
