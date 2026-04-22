@@ -80,11 +80,27 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-col_cta1, col_cta2, col_cta3 = st.columns([1, 1, 1])
-with col_cta2:
-    st.page_link("pages/1_Flujos.py", label="📱 Ver flujos y pantallas", use_container_width=True)
+st.markdown("""
+<style>
+div[data-testid="stPageLink"] {
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(160deg,#0f1b2d 0%,#152540 100%);
+    padding: 0 6vw 60px;
+}
+div[data-testid="stPageLink"] a {
+    background: #ffd94d !important;
+    color: #0f1b2d !important;
+    font-weight: 700 !important;
+    border-radius: 14px !important;
+    padding: 14px 40px !important;
+    font-size: 15px !important;
+    text-decoration: none !important;
+}
+</style>
+""", unsafe_allow_html=True)
 
-st.markdown("""<div style="background:linear-gradient(160deg,#0f1b2d 0%,#152540 100%);height:40px;"></div>""", unsafe_allow_html=True)
+st.page_link("pages/1_Flujos.py", label="📱  Ver flujos y pantallas de la app")
 
 # ══════════════════════════════════════
 # ROLES
