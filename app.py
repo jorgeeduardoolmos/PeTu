@@ -168,6 +168,102 @@ for i, (icon, title, desc) in enumerate(features):
 
 
 # ══════════════════════════════════════
+# ROADMAP
+# ══════════════════════════════════════
+st.markdown("""<div style="height:1px;background:rgba(255,255,255,0.06);margin:0 6vw;"></div>""", unsafe_allow_html=True)
+
+st.markdown("""
+<div style="background:#0f1b2d;padding:70px 6vw 20px;">
+  <div style="font-family:sans-serif;font-size:11px;letter-spacing:0.20em;text-transform:uppercase;color:#ffd94d;font-weight:700;margin-bottom:10px;">Plan de desarrollo</div>
+  <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(38px,5.5vw,68px);line-height:1;color:#eef2ff;margin:0 0 12px;">ROADMAP</div>
+  <p style="font-family:sans-serif;font-size:15px;color:rgba(238,242,255,0.45);font-weight:300;max-width:560px;margin:0 0 48px;line-height:1.65;">Construimos de adentro hacia afuera: primero lo que duele hoy, después lo que genera retención, y finalmente lo que escala el negocio.</p>
+</div>
+""", unsafe_allow_html=True)
+
+phases = [
+    {
+        "num": "01",
+        "tag": "Semanas 1 — 4",
+        "title": "Lo que duele hoy",
+        "subtitle": "Reemplazar el caos del WhatsApp",
+        "color": "#ffd94d",
+        "bg": "linear-gradient(145deg,#25250a,#1a1a06)",
+        "border": "rgba(255,217,77,0.30)",
+        "status": "🟡 En desarrollo",
+        "items": [
+            ("📋", "Citaciones para partidos", "Quién va, quién no. Confirmación de presencia sin grupos de WhatsApp."),
+            ("🗓️", "Fixture de la temporada", "Fechas, rivales y horarios visibles para todos los roles."),
+            ("📍", "Ubicación de canchas", "Dirección con mapa. Que nadie pregunte más '¿dónde es?'."),
+        ]
+    },
+    {
+        "num": "02",
+        "tag": "Meses 2 — 3",
+        "title": "Lo que genera retención",
+        "subtitle": "Datos que hacen volver cada semana",
+        "color": "#63b3ff",
+        "bg": "linear-gradient(145deg,#1a3a5c,#142d4a)",
+        "border": "rgba(99,179,255,0.25)",
+        "status": "⚪ Próximamente",
+        "items": [
+            ("⚽", "Resultados de partidos", "Marcador final y goles por jugador cargados al instante."),
+            ("📊", "Estadísticas básicas", "Partidos jugados, goles y asistencias por jugador en la temporada."),
+            ("💬", "Comunicación interna", "Avisos y comunicados segmentados por rol. Adiós al grupo general."),
+        ]
+    },
+    {
+        "num": "03",
+        "tag": "Meses 4 — 6",
+        "title": "Lo que atrae directivos",
+        "subtitle": "Gestión institucional del club",
+        "color": "#7de0b0",
+        "bg": "linear-gradient(145deg,#0d2e1e,#0a2418)",
+        "border": "rgba(80,200,140,0.25)",
+        "status": "⚪ Futuro",
+        "items": [
+            ("💼", "Contratos y vencimientos", "Alertas automáticas antes de que venza un contrato."),
+            ("🔀", "Gestión de fichajes", "Seguimiento de negociaciones y transferencias del plantel."),
+            ("💰", "Reportes del club", "Visión financiera y métricas de rendimiento para la dirigencia."),
+        ]
+    },
+]
+
+for phase in phases:
+    # Card header
+    st.markdown(f"""
+    <div style="{phase['bg']};border:1px solid {phase['border']};border-radius:20px;padding:36px 32px 24px;margin:0 6vw 20px;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:6px;flex-wrap:wrap;">
+        <span style="font-family:'Bebas Neue',Impact,sans-serif;font-size:52px;color:{phase['color']};line-height:1;opacity:0.22;">{phase['num']}</span>
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+            <span style="font-family:sans-serif;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:{phase['color']};background:rgba(255,255,255,0.06);padding:4px 12px;border-radius:100px;">{phase['tag']}</span>
+            <span style="font-family:sans-serif;font-size:12px;color:rgba(238,242,255,0.35);">{phase['status']}</span>
+          </div>
+          <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:28px;color:#eef2ff;letter-spacing:0.03em;">{phase['title']}</div>
+          <p style="font-family:sans-serif;font-size:13px;color:rgba(238,242,255,0.40);margin:2px 0 0;font-weight:300;">{phase['subtitle']}</p>
+        </div>
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Feature tiles inside each phase using columns
+    c1, c2, c3 = st.columns(3, gap="small")
+    cols_map = [c1, c2, c3]
+    for idx, (icon, title, desc) in enumerate(phase["items"]):
+        with cols_map[idx]:
+            st.markdown(f"""
+            <div style="background:rgba(255,255,255,0.04);border-radius:14px;padding:20px 20px;margin:0 6vw 8px;border-top:3px solid {phase['color']};">
+              <div style="font-size:24px;margin-bottom:10px;">{icon}</div>
+              <div style="font-family:sans-serif;font-size:14px;font-weight:700;color:#eef2ff;margin-bottom:6px;">{title}</div>
+              <div style="font-family:sans-serif;font-size:12px;color:rgba(238,242,255,0.42);line-height:1.5;">{desc}</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+    st.markdown("<div style='height:16px'></div>", unsafe_allow_html=True)
+
+st.markdown("<div style='height:40px;'></div>", unsafe_allow_html=True)
+
+# ══════════════════════════════════════
 # FOOTER
 # ══════════════════════════════════════
 st.markdown("""
