@@ -4,3 +4,6 @@ backgroundColor = "#1a2744"
 primaryColor = "#ffd94d"
 secondaryBackgroundColor = "#1e2f55"
 textColor = "#eef2ff"
+
+[client]
+showSidebarNavigation = true
