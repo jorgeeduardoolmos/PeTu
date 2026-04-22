@@ -14,7 +14,7 @@ html, body, .stApp, .main,
 }}
 [data-testid="stHeader"]     {{ display: none !important; }}
 [data-testid="stDecoration"] {{ display: none !important; }}
-[data-testid="stSidebarNav"] {{ display: none !important; }}
+
 .block-container {{ padding: 0 !important; max-width: 100% !important; }}
 section[data-testid="stMain"] > div {{ padding: 0 !important; }}
 
