@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
+import AuthLayout from "@/components/AuthLayout";
 
 export const metadata: Metadata = {
   title: "La PeTu App — Docs",
@@ -10,11 +10,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <body className="flex min-h-screen bg-[#0f1b2d]">
-        <Sidebar />
-        <main className="flex-1 ml-64 min-h-screen">
-          <div className="max-w-5xl mx-auto px-8 py-10">{children}</div>
-        </main>
+      <body className="bg-[#0f1b2d]">
+        <AuthLayout>{children}</AuthLayout>
       </body>
     </html>
   );

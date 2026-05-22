@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const nav = [
   { href: "/",                label: "🏠 Overview" },
@@ -13,6 +14,20 @@ const nav = [
 
 export default function Sidebar() {
   const path = usePathname();
+  const router = useRouter();
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    const match = document.cookie.match(/auth=([^;]+)/);
+    if (match) setUser(match[1]);
+  }, []);
+
+  function handleLogout() {
+    document.cookie = "auth=; path=/; max-age=0";
+    router.push("/login");
+    router.refresh();
+  }
+
   return (
     <aside className="fixed top-0 left-0 h-screen w-64 bg-[#1a2744] border-r border-white/10 flex flex-col z-50">
       <div className="px-6 py-6 border-b border-white/10">
@@ -32,8 +47,18 @@ export default function Sidebar() {
           );
         })}
       </nav>
-      <div className="px-6 py-4 border-t border-white/10">
-        <div className="text-white/25 text-xs">Atlanta Futsal · 2026</div>
+      <div className="px-4 py-4 border-t border-white/10 space-y-2">
+        {user && (
+          <div className="text-white/40 text-xs px-2">
+            Hola, <span className="text-white/60 font-semibold">{user}</span>
+          </div>
+        )}
+        <button
+          onClick={handleLogout}
+          className="w-full text-left px-3 py-2 rounded-lg text-sm text-white/40 hover:text-white hover:bg-white/5 transition-all"
+        >
+          🚪 Cerrar sesión
+        </button>
       </div>
     </aside>
   );
