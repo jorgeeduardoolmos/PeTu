@@ -32,6 +32,26 @@ export default function Wireframes() {
   return (
     <div>
       <PageHeader label="Documentación" title="Wireframes" subtitle="20 pantallas de la app organizadas por rol y fase de desarrollo." />
+      <div className="flex gap-3 mb-8">
+        <a
+          href="/petu-app/wireframes.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 bg-[#ffd94d] text-[#0f1b2d] font-bold text-sm rounded-xl px-5 py-4 hover:bg-[#ffe566] transition-colors flex items-center justify-between gap-3"
+        >
+          <span>📱 Ver 20 wireframes interactivos</span>
+          <span className="opacity-60 text-xs font-normal">abre en nueva pestaña →</span>
+        </a>
+        <a
+          href="/petu-app/prototipo.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 bg-[#1a2744] border border-white/10 text-white font-bold text-sm rounded-xl px-5 py-4 hover:border-[#ffd94d44] hover:text-[#ffd94d] transition-colors flex items-center justify-between gap-3"
+        >
+          <span>⚡ Ver prototipo interactivo</span>
+          <span className="opacity-40 text-xs font-normal">abre en nueva pestaña →</span>
+        </a>
+      </div>
       <div className="bg-[#ffd94d08] border border-[#ffd94d22] rounded-xl p-5 mb-8">
         <div className="text-[#ffd94d] font-semibold text-sm mb-1">📐 Brief de diseño disponible</div>
         <p className="text-white/50 text-sm">Usá el brief completo para generar cada pantalla en Claude Design o Figma. Incluye identidad visual, componentes recurrentes y notas de UX por rol.</p>
