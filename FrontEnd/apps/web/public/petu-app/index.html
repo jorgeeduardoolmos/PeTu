@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La PeTu App — Diseño</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      background: #0f1b2d;
+      color: #eef2ff;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+    }
+
+    .card {
+      background: #1a2744;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 1.5rem;
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,217,77,0.12);
+      border: 1px solid rgba(255,217,77,0.25);
+      color: #ffd94d;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 8vw, 2.75rem);
+      font-weight: 800;
+      color: #ffd94d;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: rgba(238,242,255,0.5);
+      font-size: 0.95rem;
+      margin-bottom: 2.25rem;
+      line-height: 1.5;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 2rem;
+    }
+
+    .label {
+      color: rgba(238,242,255,0.35);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: block;
+      background: #ffd94d;
+      color: #0f1b2d;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.9rem 1.5rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn:hover { background: #ffe566; transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-desc {
+      font-size: 0.75rem;
+      font-weight: 400;
+      opacity: 0.6;
+      display: block;
+      margin-top: 0.2rem;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: rgba(238,242,255,0.2);
+      font-size: 0.7rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge">⚽ Atlanta Futsal Inferiores</div>
+    <h1>La PeTu App</h1>
+    <p class="subtitle">Diseño hi-fi — Prototipos interactivos y wireframes del sistema de gestión deportiva.</p>
+
+    <hr class="divider" />
+
+    <p class="label">Artefactos de diseño</p>
+
+    <div class="btn-group">
+      <a href="./prototipo.html" class="btn">
+        Ver prototipo interactivo
+        <span class="btn-desc">App completa navegable · todos los roles</span>
+      </a>
+      <a href="./wireframes.html" class="btn">
+        Ver 20 wireframes
+        <span class="btn-desc">Pantallas: splash, login, dashboards y más</span>
+      </a>
+    </div>
+
+    <div class="footer">Atlanta Futsal · 2026</div>
+  </div>
+</body>
+</html>
