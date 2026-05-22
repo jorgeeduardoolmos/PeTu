@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 const nav = [
   { href: "/",                label: "🏠 Overview" },
+  { href: "/jugadores",       label: "⚽ Jugadores" },
   { href: "/casos-de-uso",    label: "👥 Casos de uso" },
   { href: "/reglas-negocio",  label: "📋 Reglas de negocio" },
   { href: "/wireframes",      label: "📱 Wireframes" },
