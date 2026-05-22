@@ -52,11 +52,7 @@ export default function Wireframes() {
           <span className="opacity-40 text-xs font-normal">abre en nueva pestaña →</span>
         </a>
       </div>
-      <div className="bg-[#ffd94d08] border border-[#ffd94d22] rounded-xl p-5 mb-8">
-        <div className="text-[#ffd94d] font-semibold text-sm mb-1">📐 Brief de diseño disponible</div>
-        <p className="text-white/50 text-sm">Usá el brief completo para generar cada pantalla en Claude Design o Figma. Incluye identidad visual, componentes recurrentes y notas de UX por rol.</p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {pantallas.map((p) => (
           <div key={p.id} className="bg-[#1a2744] border border-white/10 rounded-xl p-5">
             <div className="flex items-start justify-between gap-3 mb-2">
