@@ -1,125 +1,74 @@
-import Link from "next/link";
+import { PageHeader, Badge } from "@/components/ui";
 
-const sections = [
-  {
-    href: "/casos-de-uso",
-    icon: "👥",
-    title: "Casos de uso",
-    desc: "23 casos organizados por rol: Coordinador, Entrenador, Jugador, Directivo y Familia.",
-    color: "#63b3ff",
-  },
-  {
-    href: "/reglas-negocio",
-    icon: "📋",
-    title: "Reglas de negocio",
-    desc: "RN-01 a RN-27. Quién puede hacer qué, cuándo y bajo qué condiciones.",
-    color: "#ffd94d",
-  },
-  {
-    href: "/wireframes",
-    icon: "📱",
-    title: "Wireframes",
-    desc: "20 pantallas diseñadas: splash, login, dashboards por rol, convocatoria, fixture y más.",
-    color: "#50c88c",
-  },
-  {
-    href: "/arquitectura",
-    icon: "🏗️",
-    title: "Arquitectura",
-    desc: "Diagrama de roles, flujos de datos y decisiones técnicas del sistema.",
-    color: "#f87171",
-  },
-  {
-    href: "/roadmap",
-    icon: "🗓️",
-    title: "Roadmap",
-    desc: "3 fases con 16 features. Estado actual de desarrollo de cada funcionalidad.",
-    color: "#a78bfa",
-  },
+const pantallas = [
+  { id: "P-01", nombre: "Splash Screen", rol: "Todos", fase: 1, desc: "Apertura de la app. Logo, CTA Iniciar sesión y Soy nuevo." },
+  { id: "P-02", nombre: "Login", rol: "Todos", fase: 1, desc: "Email + contraseña + Google OAuth. Detección automática de rol." },
+  { id: "P-03", nombre: "Home Coordinador", rol: "Coordinador", fase: 1, desc: "Dashboard con categorías activas, alertas de planificaciones faltantes." },
+  { id: "P-04", nombre: "Carga Modelo de Juego", rol: "Coordinador", fase: 1, desc: "Formulario para subir objetivos y metodología por categoría." },
+  { id: "P-05", nombre: "Dashboard planificaciones", rol: "Coordinador", fase: 1, desc: "Vista verde/rojo de qué entrenadores cargaron su semana." },
+  { id: "P-06", nombre: "Home Entrenador", rol: "Entrenador", fase: 1, desc: "Próximo partido con botón Citar, estadísticas rápidas, acciones frecuentes." },
+  { id: "P-07", nombre: "Convocatoria", rol: "Entrenador", fase: 1, desc: "Jugadores agrupados por posición (desde 5ta). Selección y envío." },
+  { id: "P-08", nombre: "Estado de confirmaciones", rol: "Entrenador", fase: 1, desc: "Lista con ✅ / ❌ / ⏳ de cada jugador convocado." },
+  { id: "P-09", nombre: "Planificación semanal", rol: "Entrenador", fase: 1, desc: "Checklist de contenidos del mesociclo. El entrenador tilda los que trabaja." },
+  { id: "P-10", nombre: "Carga de resultado", rol: "Entrenador", fase: 1, desc: "Marcador propio, rival, goleadores opcionales." },
+  { id: "P-11", nombre: "Registro de asistencia", rol: "Entrenador", fase: 2, desc: "Toggle presente/ausente por jugador con campo de excepción." },
+  { id: "P-12", nombre: "Home Jugador", rol: "Jugador", fase: 1, desc: "Estado de convocatoria prominente, próximo partido, última estadística." },
+  { id: "P-13", nombre: "Confirmación convocatoria", rol: "Jugador", fase: 1, desc: "¿Podés jugar? Sí / No + motivo si rechaza." },
+  { id: "P-14", nombre: "Fixture jugador", rol: "Jugador", fase: 1, desc: "Calendario de partidos con fecha, hora, cancha y dirección." },
+  { id: "P-15", nombre: "Modelo de juego (jugador)", rol: "Jugador", fase: 1, desc: "Objetivos del año y principios de juego adaptados a su categoría." },
+  { id: "P-16", nombre: "Mis estadísticas", rol: "Jugador", fase: 2, desc: "Partidos, goles, asistencias, % de asistencia al entrenamiento." },
+  { id: "P-17", nombre: "Autoevaluación", rol: "Jugador", fase: 3, desc: "Encuesta semáforo 3 veces por año para categorías 5ta en adelante." },
+  { id: "P-18", nombre: "Dashboard Directivo", rol: "Directivo", fase: 3, desc: "Socios activos, cuotas, vencimientos, resultados del fin de semana." },
+  { id: "P-19", nombre: "Gestión de fichajes", rol: "Directivo", fase: 3, desc: "Pipeline: en conversación / cerrado / caído." },
+  { id: "P-20", nombre: "Home Familia", rol: "Familia", fase: 2, desc: "Fixture del equipo del hijo, último resultado, tabla de posiciones." },
 ];
 
-const roles = [
-  { icon: "🧠", name: "Coordinador", desc: "Mati Maranzano — carga modelo de juego, define contenidos, hace seguimiento de entrenadores.", color: "#ffd94d" },
-  { icon: "🎽", name: "Entrenador", desc: "Tito, Panchi, Facu, Pablito — gestiona su categoría: convocatoria, asistencia, planificación.", color: "#63b3ff" },
-  { icon: "⚡", name: "Jugador", desc: "Ve su convocatoria, fixture, objetivos y estadísticas personales.", color: "#50c88c" },
-  { icon: "🏛️", name: "Directivo", desc: "Andrés Lobo — gestión institucional: fichajes, contratos, presupuesto.", color: "#f87171" },
-  { icon: "👨‍👩‍👦", name: "Familia", desc: "Vista reducida: fixture, resultados y tabla de posiciones.", color: "#a78bfa" },
-];
+const rolColor: Record<string, "yellow" | "blue" | "green" | "red" | "gray"> = {
+  Todos: "gray",
+  Coordinador: "yellow",
+  Entrenador: "blue",
+  Jugador: "green",
+  Directivo: "red",
+  Familia: "gray",
+};
 
-export default function Home() {
+const faseColor: Record<number, "yellow" | "blue" | "green"> = { 1: "yellow", 2: "blue", 3: "green" };
+
+export default function Wireframes() {
   return (
     <div>
-      {/* Hero */}
-      <div className="mb-12">
-        <div className="inline-block bg-[#ffd94d22] border border-[#ffd94d44] text-[#ffd94d] text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
-          ⚽ Atlanta Futsal Inferiores
-        </div>
-        <h1 className="text-5xl font-bold text-white mb-4 leading-tight">
-          La PeTu App<br />
-          <span className="text-[#ffd94d]">Documentación técnica</span>
-        </h1>
-        <p className="text-white/50 text-lg max-w-2xl leading-relaxed">
-          Plataforma de gestión deportiva para Atlanta Futsal Inferiores. Conecta coordinadores,
-          entrenadores, jugadores, directivos y familias en una sola app.
+      <PageHeader
+        label="Documentación"
+        title="Wireframes"
+        subtitle="20 pantallas de la app. Los diseños detallados se generan con Claude Design usando el brief de cada pantalla."
+      />
+
+      {/* CTA al brief */}
+      <div className="bg-[#ffd94d08] border border-[#ffd94d22] rounded-xl p-5 mb-8">
+        <div className="text-[#ffd94d] font-semibold text-sm mb-1">📐 Brief de diseño disponible</div>
+        <p className="text-white/50 text-sm">
+          Usá el brief completo de esta documentación para generar cada pantalla en Claude Design o Figma.
+          El brief incluye identidad visual, componentes recurrentes y notas de UX para cada rol.
         </p>
       </div>
 
-      {/* Roles */}
-      <div className="mb-12">
-        <h2 className="text-white/40 text-xs font-bold tracking-widest uppercase mb-4">5 roles</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-          {roles.map((r) => (
-            <div key={r.name} className="bg-[#1a2744] border border-white/10 rounded-xl p-4 flex gap-3">
-              <span className="text-2xl flex-shrink-0">{r.icon}</span>
-              <div>
-                <div className="font-semibold text-white text-sm mb-1" style={{ color: r.color }}>{r.name}</div>
-                <div className="text-white/45 text-xs leading-relaxed">{r.desc}</div>
+      {/* Grid de pantallas */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {pantallas.map((p) => (
+          <div key={p.id} className="bg-[#1a2744] border border-white/10 rounded-xl p-5">
+            <div className="flex items-start justify-between gap-3 mb-2">
+              <div className="flex items-center gap-2">
+                <span className="text-white/25 text-xs font-mono">{p.id}</span>
+                <span className="text-white font-semibold text-sm">{p.nombre}</span>
+              </div>
+              <div className="flex gap-1.5 flex-shrink-0">
+                <Badge color={rolColor[p.rol] || "gray"}>{p.rol}</Badge>
+                <Badge color={faseColor[p.fase]}>F{p.fase}</Badge>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Stats rápidas */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-12">
-        {[
-          { n: "316", label: "Socios activos" },
-          { n: "6", label: "Categorías" },
-          { n: "23", label: "Casos de uso" },
-          { n: "27", label: "Reglas de negocio" },
-        ].map((s) => (
-          <div key={s.label} className="bg-[#1a2744] border border-white/10 rounded-xl p-4 text-center">
-            <div className="text-3xl font-bold text-[#ffd94d]">{s.n}</div>
-            <div className="text-white/40 text-xs mt-1">{s.label}</div>
+            <p className="text-white/45 text-xs leading-relaxed">{p.desc}</p>
           </div>
         ))}
-      </div>
-
-      {/* Secciones */}
-      <h2 className="text-white/40 text-xs font-bold tracking-widest uppercase mb-4">Secciones</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {sections.map((s) => (
-          <Link
-            key={s.href}
-            href={s.href}
-            className="bg-[#1a2744] border border-white/10 rounded-xl p-5 hover:border-[#ffd94d44] transition-all group"
-          >
-            <div className="flex items-start gap-3">
-              <span className="text-2xl">{s.icon}</span>
-              <div>
-                <div className="font-semibold text-white group-hover:text-[#ffd94d] transition-colors mb-1">
-                  {s.title} →
-                </div>
-                <div className="text-white/45 text-sm leading-relaxed">{s.desc}</div>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
-
-      {/* Footer info */}
-      <div className="mt-12 pt-8 border-t border-white/10 text-white/25 text-xs">
-        Reunión de kick-off: 15 mayo 2026 · Participantes: Andrés Lobo, Matías Maranzano, Matías Castagnola, Pela (dev), Jorge Olmos
       </div>
     </div>
   );
