@@ -28,6 +28,21 @@ export const reglas: Regla[] = [
   { id:"RN-25", categoria:"Necesidades", titulo:"Quién pide materiales", descripcion:"Entrenadores, ayudantes y delegados pueden crear solicitudes con cantidad y urgencia." },
   { id:"RN-26", categoria:"Necesidades", titulo:"Quién aprueba", descripcion:"El coordinador o el directivo aprueban, rechazan o modifican las solicitudes." },
   { id:"RN-27", categoria:"Necesidades", titulo:"Estados de solicitud", descripcion:"SOLICITADO → EN REVISIÓN → APROBADO / RECHAZADO → ENTREGADO." },
+
+  // ── Delegado ──────────────────────────────────────────────────────────────
+  { id:"RN-28", categoria:"Delegado", titulo:"Programación del partido — AFA", descripcion:"El delegado envía la programación por email al referente de la categoría en AFA con al menos 5–6 días de anticipación. Sin programación confirmada no hay fecha oficial." },
+  { id:"RN-29", categoria:"Delegado", titulo:"Programación del partido — Liga", descripcion:"Para Liga, el delegado coordina día, hora y sede directamente con el delegado rival. Ambos cuentan con fixture y deben acordar el encuentro." },
+  { id:"RN-30", categoria:"Delegado", titulo:"Policía y médico en AFA", descripcion:"El delegado debe solicitar la presencia de policía y médico con 5 o 6 días de anticipación al partido. Sin médico y sin policía, la jornada no puede comenzar." },
+  { id:"RN-31", categoria:"Delegado", titulo:"Credenciales de jugadores", descripcion:"En AFA los jugadores presentan credenciales físicas. En Liga las credenciales están en la app. El delegado es responsable de verificar que todos figuren en planilla." },
+  { id:"RN-32", categoria:"Delegado", titulo:"Colores de camiseta", descripcion:"El delegado coordina con el rival los colores de camiseta por categoría durante la semana previa. En caso de conflicto, el local define." },
+  { id:"RN-33", categoria:"Delegado", titulo:"Planilla de partido", descripcion:"Las planillas se imprimen los viernes. El delegado coordina previamente con los DT las citaciones para que todos los jugadores figuren correctamente." },
+  { id:"RN-34", categoria:"Delegado", titulo:"Pelota nueva en AFA", descripcion:"Para partidos de AFA se utiliza pelota nueva. El delegado es responsable de proveerla y controlar las pelotas de entrada en calor y juego durante el encuentro." },
+  { id:"RN-35", categoria:"Delegado", titulo:"Pecheras para suplentes", descripcion:"Todos los jugadores suplentes deben contar con pechera en el banco. El delegado verifica esto antes del inicio de cada partido." },
+  { id:"RN-36", categoria:"Delegado", titulo:"Condiciones del estadio", descripcion:"Antes de cada jornada el delegado verifica: redes de arcos, estado de la cancha, vestuario del árbitro limpio, vestuarios local y visitante separados y limpios, bancos de suplentes en posición, mesa de control a mitad de cancha." },
+  { id:"RN-37", categoria:"Delegado", titulo:"Recepción del árbitro", descripcion:"El delegado recibe al árbitro, le ofrece fruta, turrones e hidratación. El árbitro no debe buscar sus propias comodidades." },
+  { id:"RN-38", categoria:"Delegado", titulo:"Taquilla y entradas", descripcion:"Previo al inicio de jornada, el delegado prepara la entrada: entradas oficiales (club o liga), cambio, caja registradora, mesa y dos sillas." },
+  { id:"RN-39", categoria:"Delegado", titulo:"Nexo árbitro–tribunas", descripcion:"El delegado actúa como nexo entre el árbitro y las tribunas. Debe mantener las tribunas calmadas y dialogar con el delegado rival para prevenir incidentes." },
+  { id:"RN-40", categoria:"Delegado", titulo:"Logística semanal — indumentaria", descripcion:"Durante la semana el delegado lava la ropa, arma los bolsos por categoría y coordina colores con los rivales." },
 ];
 
 export const categorias = ["Todas", ...Array.from(new Set(reglas.map(r => r.categoria)))];
