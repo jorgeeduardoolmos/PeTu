@@ -3,14 +3,22 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const nav = [
-  { href: "/",                label: "🏠 Overview" },
-  { href: "/jugadores",       label: "⚽ Jugadores" },
-  { href: "/casos-de-uso",    label: "👥 Casos de uso" },
-  { href: "/reglas-negocio",  label: "📋 Reglas de negocio" },
-  { href: "/wireframes",      label: "📱 Wireframes" },
-  { href: "/arquitectura",    label: "🏗️ Arquitectura" },
-  { href: "/roadmap",         label: "🗓️ Roadmap" },
+const navTop = [
+  { href: "/", label: "🏠 Overview" },
+];
+
+const navMid = [
+  { href: "/casos-de-uso",   label: "👥 Casos de uso" },
+  { href: "/reglas-negocio", label: "📋 Reglas de negocio" },
+  { href: "/wireframes",     label: "📱 Wireframes" },
+  { href: "/arquitectura",   label: "🏗️ Arquitectura" },
+  { href: "/roadmap",        label: "🗓️ Roadmap" },
+];
+
+const navBot = [
+  { href: "/metodologia", label: "📚 Metodología" },
+  { href: "/normas",      label: "📜 Normas" },
+  { href: "/jugadores",   label: "⚽ Jugadores" },
 ];
 
 export default function Sidebar() {
@@ -35,8 +43,32 @@ export default function Sidebar() {
         <div className="text-[#ffd94d] font-bold text-xl tracking-wide">⚽ La PeTu App</div>
         <div className="text-white/40 text-xs mt-1">Documentación técnica</div>
       </div>
-      <nav className="flex-1 px-3 py-4 space-y-1">
-        {nav.map((item) => {
+      <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+        {navTop.map((item) => {
+          const active = path === item.href;
+          return (
+            <Link key={item.href} href={item.href}
+              className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm transition-all ${
+                active ? "bg-[#ffd94d] text-[#0f1b2d] font-semibold" : "text-white/60 hover:text-white hover:bg-white/5"
+              }`}>
+              {item.label}
+            </Link>
+          );
+        })}
+        <div className="my-2 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+        {navMid.map((item) => {
+          const active = path === item.href;
+          return (
+            <Link key={item.href} href={item.href}
+              className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm transition-all ${
+                active ? "bg-[#ffd94d] text-[#0f1b2d] font-semibold" : "text-white/60 hover:text-white hover:bg-white/5"
+              }`}>
+              {item.label}
+            </Link>
+          );
+        })}
+        <div className="my-2 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+        {navBot.map((item) => {
           const active = path === item.href;
           return (
             <Link key={item.href} href={item.href}

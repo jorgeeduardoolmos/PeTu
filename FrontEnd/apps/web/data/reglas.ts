@@ -43,6 +43,16 @@ export const reglas: Regla[] = [
   { id:"RN-38", categoria:"Delegado", titulo:"Taquilla y entradas", descripcion:"Previo al inicio de jornada, el delegado prepara la entrada: entradas oficiales (club o liga), cambio, caja registradora, mesa y dos sillas." },
   { id:"RN-39", categoria:"Delegado", titulo:"Nexo árbitro–tribunas", descripcion:"El delegado actúa como nexo entre el árbitro y las tribunas. Debe mantener las tribunas calmadas y dialogar con el delegado rival para prevenir incidentes." },
   { id:"RN-40", categoria:"Delegado", titulo:"Logística semanal — indumentaria", descripcion:"Durante la semana el delegado lava la ropa, arma los bolsos por categoría y coordina colores con los rivales." },
+
+  // ── Cuotas ────────────────────────────────────────────────────────────────
+  { id:"RN-41", categoria:"Cuotas", titulo:"Alerta de cuota impaga — entrenador", descripcion:"En la pantalla de convocatoria, los jugadores con cuota impaga aparecen resaltados en rojo. El entrenador ve el indicador pero decide libremente si los cita. La app informa, no bloquea." },
+  { id:"RN-42", categoria:"Cuotas", titulo:"Aviso de cuota impaga — jugador", descripcion:"El jugador con cuota impaga ve un aviso informativo en su pantalla principal al ingresar a la app. No impide el acceso a ninguna funcionalidad." },
+  { id:"RN-43", categoria:"Cuotas", titulo:"Visibilidad del estado de cuota", descripcion:"El estado de deuda de cuota es visible únicamente para coordinador, entrenador de la categoría y directivo. Nunca se muestra a otros jugadores ni a familias de otros jugadores." },
+
+  // ── Becados ────────────────────────────────────────────────────────────────
+  { id:"RN-44", categoria:"Becados", titulo:"Registro de becados", descripcion:"El directivo o coordinador registra jugadores becados indicando condiciones y fecha de vencimiento de la beca. Los becados no generan alertas de deuda de cuota." },
+  { id:"RN-45", categoria:"Becados", titulo:"Visibilidad de becados", descripcion:"La condición de becado es visible únicamente para coordinador y directivo. No se muestra a entrenadores, jugadores ni familias." },
+  { id:"RN-46", categoria:"Becados", titulo:"Vencimiento de beca", descripcion:"Cuando una beca se acerca a su vencimiento (menos de 30 días), el sistema genera una alerta para el directivo para renovarla o regularizar la situación." },
 ];
 
-export const categorias = ["Todas", ...Array.from(new Set(reglas.map(r => r.categoria)))];
+export const categorias = ["Todas", "Convocatoria", "Planificación", "Asistencia", "Fixture", "Jugadores", "Acceso", "Necesidades", "Delegado", "Cuotas", "Becados"];

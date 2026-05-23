@@ -38,6 +38,14 @@ export const casos: CasoDeUso[] = [
   { id:"CU-33", rol:"Delegado", accion:"Controlar credenciales", descripcion:"En AFA verifica las credenciales físicas de cada jugador antes del partido. En Liga controla que figuren en la app. Coordina con DT cualquier jugador que falte.", resultado:"Todos los jugadores habilitados para jugar.", fase:1 },
   { id:"CU-34", rol:"Delegado", accion:"Gestionar clima en tribunas", descripcion:"Durante el partido actúa como nexo entre el árbitro y las tribunas. Mantiene las tribunas calmadas y dialoga con el delegado rival para prevenir o resolver incidentes.", resultado:"Jornada sin incidentes entre público y árbitros.", fase:1 },
   { id:"CU-35", rol:"Delegado", accion:"Coordinar transmisión y animación", descripcion:"Coordina si hay transmisión en vivo del partido y organiza bombos y trompetas para la animación.", resultado:"Transmisión y animación coordinadas antes del inicio.", fase:2 },
+
+  // ── Cuotas ────────────────────────────────────────────────────────────────
+  { id:"CU-36", rol:"Entrenador", accion:"Ver alerta de cuota en convocatoria", descripcion:"Al armar o revisar la convocatoria, los jugadores con cuota impaga aparecen resaltados en rojo. El entrenador decide si los incluye igual sin ninguna restricción.", resultado:"Convocatoria con indicadores rojos en jugadores con deuda. Entrenador puede citarlos de igual manera.", fase:1 },
+  { id:"CU-37", rol:"Jugador", accion:"Ver aviso de cuota pendiente", descripcion:"Al ingresar a la app, el jugador con cuota impaga ve un aviso informativo destacado en su pantalla principal. Puede cerrar el aviso y acceder normalmente a todas las funcionalidades.", resultado:"Jugador informado de su deuda. Ninguna funcionalidad bloqueada.", fase:1 },
+
+  // ── Becados ────────────────────────────────────────────────────────────────
+  { id:"CU-38", rol:"Directivo", accion:"Gestionar becados", descripcion:"El directivo registra, edita y da de baja jugadores becados. Indica condiciones de la beca y fecha de vencimiento. Los becados no generan alertas de deuda de cuota.", resultado:"Listado de becados actualizado. Sin alertas de cuota para estos jugadores.", fase:2 },
+  { id:"CU-39", rol:"Coordinador", accion:"Ver listado de becados", descripcion:"El coordinador consulta qué jugadores tienen beca activa, con sus condiciones y fecha de vencimiento.", resultado:"Vista de becados activos con estado de cada beca.", fase:2 },
 ];
 
 export const roles = ["Todos", "Coordinador", "Entrenador", "Jugador", "Directivo", "Familia", "Delegado"];
