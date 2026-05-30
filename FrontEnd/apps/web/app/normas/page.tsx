@@ -1,27 +1,45 @@
 import { PageHeader } from "@/components/ui";
+import { normas } from "@/data/normas";
 
 export default function NormasPage() {
   return (
     <div>
       <PageHeader
-        label="Atlanta Futsal"
+        label="Atlanta Futsal · Reglamento Institucional 2026"
         title="Normas"
-        subtitle="Reglamento interno y normas de convivencia del club"
+        subtitle="Normas de convivencia y hábitos del deportista"
       />
 
-      <div className="mt-6 bg-[#1a2744] border border-[#ffd94d22] rounded-2xl p-10 flex flex-col items-center text-center gap-4">
-        <div className="w-14 h-14 rounded-full bg-[#ffd94d14] border border-[#ffd94d30] flex items-center justify-center text-2xl">
-          📜
-        </div>
-        <div>
-          <h2 className="text-white/80 text-lg font-semibold mb-1">Próximamente</h2>
-          <p className="text-white/35 text-sm max-w-sm leading-relaxed">
-            El reglamento interno y las normas de convivencia del club serán cargados en esta sección.
-          </p>
-        </div>
-        <div className="mt-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-white/30 text-xs font-semibold tracking-wider uppercase">
-          Pendiente
-        </div>
+      <div className="space-y-6 mt-2">
+        {normas.map((seccion) => (
+          <div key={seccion.id} className="bg-[#1a2744] border border-white/10 rounded-xl p-6">
+            <div className="mb-4">
+              <h2 className="text-white font-semibold text-base">{seccion.titulo}</h2>
+              {seccion.subtitulo && (
+                <p className="text-white/35 text-xs mt-0.5">{seccion.subtitulo}</p>
+              )}
+            </div>
+
+            {(seccion.tipo === "parrafo" || seccion.tipo === "parrafo+lista") && seccion.parrafo && (
+              <p className="text-white/60 text-sm leading-relaxed mb-4">{seccion.parrafo}</p>
+            )}
+
+            {(seccion.tipo === "lista" || seccion.tipo === "parrafo+lista") && seccion.items && (
+              <ul className="space-y-3">
+                {seccion.items.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm text-white/60 leading-relaxed">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#ffd94d] opacity-60 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-8 pt-6 border-t border-white/10 text-white/20 text-xs">
+        Fuente: Modelo de Juego y Metodología de Entrenamiento — Inferiores Atlanta Futsal 2026 · MM&MC
       </div>
     </div>
   );
