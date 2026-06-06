@@ -46,6 +46,12 @@ export const casos: CasoDeUso[] = [
   // ── Becados ────────────────────────────────────────────────────────────────
   { id:"CU-38", rol:"Directivo", accion:"Gestionar becados", descripcion:"El directivo registra, edita y da de baja jugadores becados. Indica condiciones de la beca y fecha de vencimiento. Los becados no generan alertas de deuda de cuota.", resultado:"Listado de becados actualizado. Sin alertas de cuota para estos jugadores.", fase:2 },
   { id:"CU-39", rol:"Coordinador", accion:"Ver listado de becados", descripcion:"El coordinador consulta qué jugadores tienen beca activa, con sus condiciones y fecha de vencimiento.", resultado:"Vista de becados activos con estado de cada beca.", fase:2 },
+
+  // ── Ficha del Jugador ──────────────────────────────────────────────────────
+  { id:"CU-40", rol:"Entrenador", accion:"Cargar ficha del jugador", descripcion:"El entrenador completa la ficha individual de cada jugador de su categoría: información general (posición, perfil dominante), hábito de entrenamiento, características, fortalezas, aspectos a mejorar, personalidad y observaciones.", precondiciones:"Jugador registrado en el sistema", resultado:"Ficha guardada y visible para coordinador. Historial iniciado con fecha y autor.", fase:2 },
+  { id:"CU-41", rol:"Entrenador", accion:"Actualizar ficha del jugador", descripcion:"El entrenador edita los campos de la ficha a lo largo de la temporada para reflejar la evolución del jugador. Cada cambio queda registrado en el historial.", precondiciones:"Ficha del jugador existente", resultado:"Ficha actualizada. Nueva entrada en el historial de cambios.", fase:2 },
+  { id:"CU-42", rol:"Coordinador", accion:"Consultar fichas de jugadores", descripcion:"El coordinador accede a las fichas completas de todos los jugadores de cualquier categoría, incluyendo valoración interna y el historial de actualizaciones realizadas por los entrenadores.", resultado:"Vista filtrable por categoría con ficha completa y trazabilidad de cambios.", fase:2 },
+  { id:"CU-43", rol:"Directivo", accion:"Consultar resumen de fichas", descripcion:"El directivo accede a un resumen de la información de los jugadores (datos generales y categoría) sin acceso a la valoración técnica interna ni a las observaciones del entrenador.", resultado:"Vista ejecutiva con datos generales de jugadores por categoría.", fase:3 },
 ];
 
 export const roles = ["Todos", "Coordinador", "Entrenador", "Jugador", "Directivo", "Familia", "Delegado"];

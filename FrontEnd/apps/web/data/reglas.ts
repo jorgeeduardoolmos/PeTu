@@ -53,6 +53,14 @@ export const reglas: Regla[] = [
   { id:"RN-44", categoria:"Becados", titulo:"Registro de becados", descripcion:"El directivo o coordinador registra jugadores becados indicando condiciones y fecha de vencimiento de la beca. Los becados no generan alertas de deuda de cuota." },
   { id:"RN-45", categoria:"Becados", titulo:"Visibilidad de becados", descripcion:"La condición de becado es visible únicamente para coordinador y directivo. No se muestra a entrenadores, jugadores ni familias." },
   { id:"RN-46", categoria:"Becados", titulo:"Vencimiento de beca", descripcion:"Cuando una beca se acerca a su vencimiento (menos de 30 días), el sistema genera una alerta para el directivo para renovarla o regularizar la situación." },
+
+  // ── Ficha del Jugador ──────────────────────────────────────────────────────
+  { id:"RN-47", categoria:"Ficha del Jugador", titulo:"Quién carga y edita la ficha", descripcion:"El entrenador principal y el ayudante de campo pueden cargar y editar la ficha de los jugadores de su categoría. El coordinador puede crear y editar fichas de cualquier categoría." },
+  { id:"RN-48", categoria:"Ficha del Jugador", titulo:"Campos de la ficha", descripcion:"La ficha contiene: Información general (nombre, posición, perfil dominante, categoría), Hábito de entrenamiento, Características del jugador, Fortalezas, Aspectos a mejorar, Personalidad, Observaciones." },
+  { id:"RN-49", categoria:"Ficha del Jugador", titulo:"Campos obligatorios", descripcion:"Para guardar una ficha se requieren como mínimo: nombre, posición, perfil dominante y categoría. Los campos de valoración interna (fortalezas, aspectos a mejorar, personalidad) son opcionales pero recomendados." },
+  { id:"RN-50", categoria:"Ficha del Jugador", titulo:"Visibilidad por rol", descripcion:"La información general es visible para coordinador y entrenador de la categoría. La valoración interna (fortalezas, aspectos a mejorar, personalidad, observaciones) es visible solo para coordinador y entrenador de esa categoría. Los directivos acceden a un resumen sin valoración técnica detallada. El jugador no ve su valoración interna." },
+  { id:"RN-51", categoria:"Ficha del Jugador", titulo:"Historial de actualizaciones", descripcion:"Cada modificación de la ficha queda registrada con fecha, hora y autor. El coordinador puede consultar el historial completo de cambios de cualquier jugador." },
+  { id:"RN-52", categoria:"Ficha del Jugador", titulo:"Trazabilidad entre categorías", descripcion:"Al ascender de categoría, la ficha histórica se conserva completa. El nuevo entrenador puede ver la evolución del jugador desde que ingresó a las inferiores." },
 ];
 
-export const categorias = ["Todas", "Convocatoria", "Planificación", "Asistencia", "Fixture", "Jugadores", "Acceso", "Necesidades", "Delegado", "Cuotas", "Becados"];
+export const categorias = ["Todas", "Convocatoria", "Planificación", "Asistencia", "Fixture", "Jugadores", "Acceso", "Necesidades", "Delegado", "Cuotas", "Becados", "Ficha del Jugador"];
